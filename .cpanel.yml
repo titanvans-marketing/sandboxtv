@@ -1,12 +1,6 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home2/sandboxtv/public_html
-    - /usr/bin/rsync -av --delete \
-      --exclude='.git/' \
-      --exclude='.cpanel.yml' \
-      --exclude='.gitignore' \
-      --exclude='README.md' \
-      ./ "$DEPLOYPATH"/
-    - /bin/cp index.html $DEPLOYPATH
-    - /bin/cp style.css $DEPLOYPATH
+    - export DEPLOYPATH=/home2/sandboxtv/public_html/
+    - /bin/mkdir -p $DEPLOYPATH
+    - /bin/cp -R assets  $DEPLOYPATH
