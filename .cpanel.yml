@@ -8,3 +8,5 @@ deployment:
       --exclude='.gitignore' \
       --exclude='README.md' \
       ./ "$DEPLOYPATH"/
+    - /bin/cp index.html $DEPLOYPATH
+    - /bin/cp style.css $DEPLOYPATH
