@@ -1,0 +1,3617 @@
+/* ========================================================================== */
+/*  TITAN VANS - MASTER STYLESHEET (ORGANIZED FOR FUTURE REFACTOR)             */
+/*                                                                            */
+/*  IMPORTANT: This is your EXACT CSS, NOT REMOVING or “fixing” anything.     */
+/*  The only changes here are:                                                */
+/*   1) Re-ordering into logical sections                                     */
+/*   2) Adding “MOVE TO: …” comments to prepare splitting into multiple files */
+/*                                                                            */
+/*  Target future file split (suggested):                                     */
+/*   - css/site.css      (globals, typography, shared utilities, nav, footer) */
+/*   - css/home.css      (home hero, showcase, rvia/eu, process, ex3, video)   */
+/*   - css/models.css    (options, vfs, model-specific overrides, tooltips)   */
+/*   - css/faq.css       (accordion + faq layout + faq overrides)             */
+/*   - css/contact.css   (contact form + map)                                 */
+/*   - css/gallery.css   (gallery + finish options)                           */
+/*   - css/blog.css      (blog list + article)                                */
+/*   - css/slider.css    (slider + its media queries)                         */
+/*   - css/financing.css (financing + iframe wrapper)                         */
+/*                                                                            */
+/* ========================================================================== */
+
+/* ========================================================================== */
+/*  00) GLOBAL RESET + ROOT VARIABLES + BASE BODY                              */
+/*  MOVE TO: css/site.css                                                      */
+/* ========================================================================== */
+
+:root {
+  --c1: #aa0000;
+  --c2: #000;
+  --c3: #b6b6b6;
+  --c4: #ffffff;
+
+  --c5: rgba(0.5, 0.5, 0.5, 0.5);
+
+  --hover-c1: #ac1111;
+  --hover-c2: #000;
+  --hover-c3: #000;
+
+  --nav-h: 3.3rem;
+  --banner-h: 2.7;
+
+  --border-r: 3px;
+  --button-border-r: 3rem;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Work Sans", sans-serif;
+  list-style: none;
+  font-weight: 300;
+  color: var(--c3);
+}
+
+body {
+  background-color: var(--c2);
+  background-repeat: no-repeat;
+  background-size: cover, cover;
+  background-attachment: scroll, fixed;
+  background-position: center, center;
+}
+
+/* ========================================================================== */
+/*  01) BACKGROUND UTILITIES                                                   */
+/*  MOVE TO: css/site.css                                                      */
+/* ========================================================================== */
+.light-bg {
+  background-image: repeating-linear-gradient(rgba(255, 255, 255, 0.096),
+      transparent,
+      rgba(255, 255, 255, 0.096));
+  background-repeat: no-repeat;
+  background-size: 100%, cover;
+  background-attachment: scroll, fixed;
+  background-position: center, center;
+}
+
+.gray-bg {
+  background-image: repeating-linear-gradient(rgba(255, 255, 255, 0.137),
+      transparent,
+      rgba(255, 255, 255, 0.137));
+  background-repeat: no-repeat;
+  background-size: 100%, cover;
+  background-attachment: scroll, fixed;
+  background-position: center, center;
+}
+
+.dark-bg {
+  background-image: repeating-linear-gradient(transparent,
+      rgba(255, 255, 255, 0.096),
+      transparent);
+  background-repeat: no-repeat;
+  background-size: 100%, cover;
+  background-attachment: scroll, fixed;
+  background-position: center, center;
+}
+
+.topo-bg {
+  background-image:
+    linear-gradient(rgba(27, 27, 27, 0.4), black, rgba(27, 27, 27, 0.4)),
+    url(/assets/images/seamless-topo.jpg);
+}
+
+/* ========================================================================== */
+/*  02) TYPOGRAPHY + BASE ELEMENTS                                              */
+/*  MOVE TO: css/site.css                                                      */
+/* ========================================================================== */
+ol li {
+  list-style: decimal;
+  list-style-position: inside;
+}
+
+ol {
+  display: grid;
+  grid-gap: 0.5rem;
+}
+
+p,
+li {
+  line-height: 2.2rem;
+  font-size: 1.2rem;
+  letter-spacing: 0.03rem;
+  color: var(--c3);
+}
+
+nav li {
+  line-height: inherit;
+  font-size: inherit;
+}
+
+li a:hover {
+  cursor: pointer;
+}
+
+b,
+strong {
+  font-weight: 400;
+  color: var(--c4);
+  letter-spacing: 0.07rem;
+}
+
+h1 {
+  font-size: 4rem;
+  font-weight: 200;
+  text-transform: uppercase;
+  color: var(--c4);
+}
+
+h2 {
+  color: var(--c4);
+}
+
+h3 {
+  color: var(--c4);
+  text-transform: uppercase;
+  font-weight: 400;
+  letter-spacing: 0.05rem;
+  font-size: 1.3rem;
+  line-height: 2rem;
+}
+
+h4 {
+  color: var(--c4);
+  margin: 1.5rem 0 0.5rem 0;
+}
+
+a {
+  text-decoration: none;
+  color: var(--c4);
+  cursor: pointer;
+}
+
+b {
+  font-weight: 400;
+}
+
+/* ========================================================================== */
+/*  03) BUTTONS (GLOBAL)                                                       */
+/*  MOVE TO: css/site.css                                                      */
+/*  NOTE: Contains a model-specific selector you can later relocate.           */
+/* ========================================================================== */
+button {
+  border: none;
+  color: var(--c4);
+  text-transform: uppercase;
+  font-size: 1.25rem;
+  font-weight: 400;
+  letter-spacing: 0.07rem;
+  margin-top: 2rem;
+  cursor: pointer;
+}
+
+button:hover,
+.b-model .bnp:hover {
+  background-color: var(--hover-1);
+  transition: 0.3s;
+}
+
+/* ========================================================================== */
+/*  04) GENERIC / CROSS-PAGE SMALL OVERRIDES                                   */
+/*  MOVE TO: css/site.css (if truly global) OR later into page files           */
+/* ========================================================================== */
+.panel ul li {
+  font-size: 1rem;
+}
+
+.contact__msg {
+  color: green;
+}
+
+/* ========================================================================== */
+/*  10) NAVIGATION + BANNER                                                    */
+/*  MOVE TO: css/site.css                                                      */
+/* ========================================================================== */
+/* Start - Nav Bar */
+.top-banner {
+  padding: 0.75rem 1.5rem;
+  background: var(--c5);
+  position: absolute;
+  bottom: 0;
+  z-index: 100000;
+  width: 100%;
+  height: var(--banner-h);
+  text-align: center;
+  text-transform: uppercase;
+  color: var(--c4);
+  letter-spacing: 0.1rem;
+  grid-template-columns: 1fr auto auto 1fr;
+  align-items: center;
+}
+
+.top-banner span {
+  color: var(--c4);
+  font-weight: 400;
+  font-size: 18px;
+  align-self: center;
+}
+
+.navbar {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  padding: 0 0 0 0;
+  position: sticky;
+  width: 100%;
+  background: var(--c2);
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000000000;
+}
+
+.hamburger {
+  display: none;
+}
+
+.dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  color: var(--c4);
+  background: var(--c2);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  border-bottom-left-radius: var(--border-r);
+  border-bottom-right-radius: var(--border-r);
+  padding: 0rem 0rem 0.5rem 0rem;
+  margin: 0;
+  width: auto;
+  z-index: 1000;
+  box-sizing: border-box;
+  list-style: none;
+  transition: 2s;
+}
+
+.dd-last {
+  left: -1rem;
+}
+
+.dropdown li {
+  display: grid;
+  width: 100%;
+}
+
+.dropdown a {
+  display: block;
+  padding: 0.5rem 1rem;
+  text-underline-offset: 0.3rem;
+  white-space: nowrap;
+}
+
+.dropdown a:hover {
+  text-decoration: underline;
+}
+
+.nav-item:hover .dropdown {
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-item:hover .dropdown-arrow {
+  transform: rotate(90deg);
+}
+
+.dropdown-parent>a {
+  display: flex;
+  align-items: center;
+}
+
+.dropdown-arrow {
+  margin-left: 0.3rem;
+  transition: transform 0.3s ease;
+}
+
+.dropdown-parent.active .dropdown-arrow {
+  transform: rotate(180deg);
+  margin-left: 0.3rem;
+}
+
+.bar {
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 5px auto;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  background-color: var(--c4);
+}
+
+.nav-menu {
+  display: grid;
+  grid-template-columns: repeat(9, auto);
+  grid-column: 3/4;
+}
+
+.nav-item {
+  position: relative;
+}
+
+.nav-link {
+  width: 100%;
+  display: inline-block;
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--c4);
+  padding: 1.2rem 1rem;
+}
+
+.nav-logo img {
+  position: absolute;
+  width: 11rem;
+  top: 1rem;
+  left: 1rem;
+}
+
+.tdk {
+  background-color: var(--c1);
+}
+
+.tdk:hover {
+  background-color: var(--hover-1);
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.ser {
+  background-color: rgba(220, 220, 220, 0.201);
+}
+
+.ser:hover {
+  background-color: rgba(220, 220, 220, 0.486);
+  transition: 0.3s;
+}
+
+.nav-link:hover,
+.dropdown-content li:hover {
+  transition: 0.3s;
+  text-decoration: underline;
+  text-underline-offset: 0.35rem;
+}
+
+/* End */
+
+/* ========================================================================== */
+/*  11) ANNOUNCEMENTS + EMBEDS (TOUR)                                          */
+/*  MOVE TO: css/site.css IF used globally; otherwise per-page file            */
+/* ========================================================================== */
+.announcement {
+  background-color: var(--c1);
+  text-align: center;
+  padding: 2rem 1.5rem;
+  font-weight: 900;
+}
+
+.announcement span {
+  color: var(--c4);
+  font-weight: 900;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+  font-size: 1.5rem;
+}
+
+.announcement p {
+  color: var(--c4);
+  max-width: 60rem;
+  margin: 1rem auto 0 auto;
+}
+
+.van-tour {
+  margin: 0 auto;
+  width: 60rem;
+  height: 33.75rem;
+}
+
+.van-tour iframe {
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* ========================================================================== */
+/*  20) HEADER (GENERIC) + HEADER BACKGROUND IMAGES                             */
+/*  MOVE TO: css/site.css for generic header; background images maybe site.css */
+/* ========================================================================== */
+/* Start - Header */
+.header {
+  height: 95vh;
+  overflow: auto;
+  background-size: cover;
+  background-position: center;
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: 1rem 1rem 1rem 6vw;
+}
+
+.header-title {
+  align-self: center;
+  justify-self: center;
+  text-align: center;
+  display: grid;
+  grid-gap: 1rem;
+}
+
+.header-title h1 {
+  font-size: 5rem;
+  font-weight: 300;
+  line-height: 7rem;
+  letter-spacing: 0.1rem;
+}
+
+.header-title span {
+  font-size: 2rem;
+  font-weight: 300;
+  text-align: center;
+  color: var(--c4);
+  letter-spacing: 0.05rem;
+  line-height: 3rem;
+}
+
+.hd-center {
+  grid-column: 1/3;
+  background-color: #d60000;
+}
+
+/* Start - Background Images */
+
+.models-header-img {
+  background-image: url(/assets/images/models-bg-1.jpg);
+}
+
+.models-144 {
+  background-image: repeating-radial-gradient(transparent, rgba(0, 0, 0, 0.593)),
+    url(/assets/images/models-bg-13.jpg);
+
+  background-repeat: no-repeat;
+  padding: 0;
+
+}
+
+.models-170 {
+  background-image: repeating-radial-gradient(transparent, rgba(0, 0, 0, 0.593)),
+    url(/assets/images/models-bg-10.jpg);
+
+  background-repeat: no-repeat;
+  padding: 0;
+}
+
+.models-148 {
+  background-image: url(/assets/images/models-bg-4.jpg);
+}
+
+.models-148el {
+  background-image: url(/assets/images/models-bg-5.jpg);
+}
+
+.header-img {
+  background-image: url(/assets/images/models-image8.png);
+}
+
+.about-header-img {
+  background-image: url(/assets/images/models-bg-6.jpg);
+}
+
+.team-header-img {
+  background-image: url(/assets/images/models-bg-7.jpg);
+}
+
+.header-img-contact {
+  background-image: url(/assets/images/models-bg-8.jpg);
+}
+
+.header-img-vfs {
+  background-image: url(/assets/images/models-bg-10.jpg);
+}
+
+.uvfs-header-img {
+  background-image: url(/assets/images/models-bg-11.jpg);
+}
+
+.header-img-manual {
+  background-image: url(/assets/images/models-bg-12.jpg);
+}
+
+.header-img-financing {
+  background-image: url(/assets/images/models-bg-13.jpg);
+}
+
+.header-img-service {
+  background-image: url(/assets/images/mercedes-sprinter-service-banner.jpg);
+}
+
+/* ========================================================================== */
+/*  21) HOME HERO (VIDEO BACKDROP + BOX)                                       */
+/*  MOVE TO: css/home.css                                                      */
+/* ========================================================================== */
+.header {
+  pointer-events: none;
+}
+
+.header * {
+  pointer-events: auto;
+}
+
+.header {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Put the media layer behind everything */
+.header .header-media {
+  position: absolute;
+  bottom: 0;
+  inset: 0;
+  z-index: 0;
+  background: url("/assets/images/campervan-flatirons-logos.jpg") center / cover no-repeat;
+  background-position: 60%;
+  height: 100%;
+  -moz-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  filter: FlipH;
+  -ms-filter: "FlipH";
+}
+
+/* Start video invisible */
+#header-video {
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* When playing, fade in */
+#header-video.is-playing {
+  opacity: 1;
+}
+
+.header::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.header .header-box {
+  position: relative;
+  z-index: 2;
+  grid-column: 1/3;
+  padding: 3rem 4rem;
+  align-self: center;
+  max-width: 45rem;
+  background: var(--c5);
+  border-radius: var(--border-r);
+}
+
+.header-box h1 {
+  font-size: 5rem;
+  font-weight: 300;
+  margin-bottom: 0.5rem;
+}
+
+.header-box p {
+  color: var(--c4);
+  font-size: 1.5rem;
+  line-height: 2.6rem;
+  letter-spacing: 0.06rem;
+  font-weight: 300;
+  margin: 0;
+}
+
+/* ========================================================================== */
+/*  22) HOME - RVIA / EU SECTION                                               */
+/*  MOVE TO: css/home.css                                                      */
+/* ========================================================================== */
+.rvia-eu {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.rvia-eu p {
+  font-size: 1.4rem;
+  line-height: 2rem;
+  max-width: 30rem;
+}
+
+.rvia,
+.eu {
+  display: grid;
+  grid-template-rows: auto 2fr;
+  grid-gap: 3rem;
+  justify-items: center;
+  padding: 5rem 2rem;
+}
+
+.rvia-eu div img {
+  height: 8rem;
+  justify-self: center;
+  align-self: center;
+}
+
+/* ========================================================================== */
+/*  23) HOME - SHOWCASE                                                        */
+/*  MOVE TO: css/home.css                                                      */
+/* ========================================================================== */
+/* Showcase HP START */
+.showcase-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  max-width: 1400rem;
+  padding: 2rem;
+  grid-gap: 1.2rem;
+  margin: 0 auto;
+}
+
+.showcase img {
+  width: 100%;
+  opacity: 0.8;
+}
+
+.showcase img:hover {
+  opacity: 1;
+}
+
+.showcase {
+  display: grid;
+}
+
+.showcase-text {
+  padding: 2rem;
+  display: grid;
+  grid-gap: 1rem;
+  max-width: 27rem;
+  align-self: center;
+  justify-self: center;
+}
+
+.showcase h3,
+.ex3-txt h3 {
+  font-size: 1.4rem;
+  font-weight: 400;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+  color: var(--c4);
+}
+
+/* ========================================================================== */
+/*  24) HOME - PROCESS SECTION                                                  */
+/*  MOVE TO: css/home.css                                                      */
+/* ========================================================================== */
+/* Process HP START */
+.process {
+  height: auto;
+  background-size: cover;
+  background-position: center;
+  display: grid;
+  padding: 0rem 1rem;
+}
+
+.process img {
+  width: 3rem;
+  align-self: center;
+  justify-self: center;
+}
+
+.rvia-process {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.059),
+      transparent,
+      rgba(255, 255, 255, 0.114)),
+    url(/assets/images/van-conversion-company.jpg);
+}
+
+.eu-process {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.059),
+      transparent,
+      rgba(255, 255, 255, 0.114)),
+    url(/assets/images/camper-van-company.jpg);
+}
+
+/* ========================================================================== */
+/*  25) HOME - EX3 + VC COMPANIES                                              */
+/*  MOVE TO: css/home.css                                                      */
+/* ========================================================================== */
+
+.ex3-w {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  max-width: 80vw;
+  width: 100%;
+  margin: 0 auto;
+  grid-gap: 6rem 6rem;
+  padding: 3rem 3rem;
+}
+
+.ex3-txt {
+  display: grid;
+  align-self: center;
+  grid-gap: 1rem;
+}
+
+.ex3-txt p {
+  font-size: 1.4em;
+  line-height: 2.2rem;
+}
+
+.ex3-img {
+  width: 100%;
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.the-ex3 {
+  color: var(--c4);
+  grid-column: 1/2;
+  opacity: 1;
+  max-width: 20rem;
+  justify-self: start;
+
+  background-color: #aa0000;
+
+  padding: 1rem;
+  border-radius: 5rem;
+}
+
+.ex3-w h2 {
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  font-weight: 400;
+  letter-spacing: 0.08rem;
+  line-height: 2.6rem;
+}
+
+.vccompanies {
+  grid-template-columns: 1fr;
+}
+
+/* ========================================================================== */
+/*  26) HOME - "LEARN MORE" BUTTON (SPECIAL CTA)                               */
+/*  MOVE TO: css/home.css OR css/site.css IF used everywhere                  */
+/* ========================================================================== */
+button,
+.learn-more {
+  display: grid;
+  grid-template-columns: auto auto;
+  width: auto;
+  justify-self: start;
+
+  background-color: var(--c1);
+  border: transparent solid 0.3rem;
+
+  border-radius: var(--button-border-r);
+  overflow: hidden;
+
+  padding: 0.75rem 1.25rem;
+
+  margin-top: 1.25rem;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+
+  transform: translateY(0);
+
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0.345);
+}
+
+button,
+.center {
+  display: table-row;
+}
+
+.learn-more {
+  position: relative;
+  overflow: hidden;
+}
+
+.learn-more::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 69%;
+  height: 100%;
+  background: linear-gradient(120deg,
+      transparent,
+      rgba(255, 255, 255, 0.25),
+      transparent);
+  transition: left 0.6s ease;
+}
+
+.learn-more:hover::before {
+  left: 130%;
+}
+
+.learn-more:hover {
+  background-color: var(--hover-c1);
+  transform: translateY(-3px);
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.6),
+    0 0 20px rgba(255, 255, 255, 0.08),
+    inset 0 0 10px rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.learn-more:active {
+  transform: translateY(-1px) scale(0.96);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+.learn-more a {
+  display: grid;
+  grid-column: 1/3;
+  grid-template-columns: auto auto;
+  align-items: center;
+  grid-gap: 0.5rem;
+  letter-spacing: 0.08rem;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  color: var(--c4);
+  margin: 0;
+  cursor: pointer;
+}
+
+.learn-more .non-video {
+  grid-template-columns: auto;
+}
+
+.learn-more a,
+.learn-more a .btn-label {
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  color: inherit;
+  font-size: 1.1rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.08rem;
+  color: var(--c4);
+}
+
+.learn-more a .btn-icon {
+  width: 2rem;
+  height: 2rem;
+  display: grid;
+  place-items: center;
+  position: relative;
+  align-self: center;
+  justify-self: center;
+  transition: transform 0.25s ease;
+}
+
+.learn-more:hover a .btn-icon {
+  transform: scale(1.1);
+}
+
+.learn-more:active a .btn-icon {
+  transform: translateX(2px);
+}
+
+/* Default icon = PLAY triangle */
+.learn-more a .btn-icon::before {
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  border-left: 0.95rem solid var(--c4);
+  border-top: 0.55rem solid transparent;
+  border-bottom: 0.55rem solid transparent;
+  margin-left: 0.15rem;
+}
+
+.learn-more a.is-close .btn-icon::before,
+.learn-more a.is-close .btn-icon::after {
+  content: "";
+  position: absolute;
+  width: 1.3rem;
+  height: 0.18rem;
+  background: var(--c4);
+  border: 0;
+  margin: 0;
+}
+
+.learn-more a.is-close .btn-icon::before {
+  transform: rotate(45deg);
+}
+
+.learn-more a.is-close .btn-icon::after {
+  transform: rotate(-45deg);
+}
+
+/* ========================================================================== */
+/*  27) INLINE VIDEO BLOCKS (PROCESS + EX3)                                    */
+/* ========================================================================== */
+
+/* Keep the two-column grid behavior */
+.inline-video .ex3-w {
+  align-items: start;
+  padding: 2rem 2rem;
+}
+
+/* Media wrapper should behave like a normal image block UNTIL you animate */
+.inline-video .video-wrapper.inline-video__media {
+  position: relative;
+  height: auto;
+  width: 100%;
+  align-content: center;
+  justify-self: center;
+  aspect-ratio: auto;
+  background-color: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  overflow: hidden;
+}
+
+/* Media wrapper should behave like a normal image block UNTIL you animate */
+.inline-video .video-wrapper.inline-video__media.bpg-video {
+  position: relative;
+  height: 100%;
+  width: auto;
+  align-content: center;
+  justify-self: center;
+  aspect-ratio: auto;
+  background-color: transparent;
+  box-shadow: none;
+  overflow: hidden;
+}
+
+/* Thumb is an in-flow <img> (matches your old “plain img” layout) */
+.inline-video .inline-video__thumb {
+  position: static;
+  display: block;
+  height: auto;
+  width: 100%;
+  height: auto;
+  cursor: pointer;
+}
+
+/* Hide thumb once playing (but keep layout so size stays identical) */
+.inline-video .inline-video__thumb.is-playing {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 300ms ease;
+}
+
+/* ========================================================================== */
+/*  INLINE VIDEO: LEFT→RIGHT GRADIENT OVERLAY (thumb + playing iframe)         */
+/* ========================================================================== */
+
+/* Ensure overlay can sit above media */
+.inline-video .video-wrapper.inline-video__media {
+  position: relative;
+  /* you already have this, keeping here for clarity */
+  overflow: hidden;
+  /* you already have this */
+}
+
+/* The overlay */
+.inline-video .video-wrapper.inline-video__media.bpg-video::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  /* above img/iframe */
+  pointer-events: none;
+  /* clicks pass through to image/button */
+
+  /* Left (darker) → Right (clearer) */
+  background: linear-gradient(to left,
+      rgba(0, 0, 0, 0.75) 0%,
+      rgba(0, 0, 0, 0.45) 35%,
+      rgba(0, 0, 0, 0.15) 70%,
+      rgba(0, 0, 0, 0) 100%);
+
+  /* Optional: slightly soften the transition edge */
+  transition: opacity 300ms ease;
+}
+
+/* Keep iframe below the overlay */
+.inline-video .video-wrapper.inline-video__media iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+/* Keep thumb below the overlay */
+.inline-video .inline-video__thumb {
+  position: relative;
+  z-index: 1;
+}
+
+/* Optional: if you want the overlay to fade once video is playing */
+.inline-video .inline-video__media.is-playing::after {
+  opacity: 0;
+  /* change to 0 to remove entirely while playing */
+}
+
+/* ========================================================================== */
+/*  Animate to 16:9 ONLY after click                                           */
+/* ========================================================================== */
+
+/* Animate wrapper height during the “expand to 16:9” transition */
+.inline-video .video-wrapper.inline-video__media {
+  transition:
+    height 450ms ease,
+    background-color 450ms ease,
+    border-radius 450ms ease,
+    box-shadow 450ms ease;
+  will-change: height;
+}
+
+/* Once playing, take the <img> out of flow so the wrapper can animate height */
+.inline-video .inline-video__media.is-playing .inline-video__thumb {
+  position: absolute;
+
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* After the height animation completes, lock responsive 16:9 styling */
+.inline-video .inline-video__media.is-ratio {
+  aspect-ratio: 16 / 9;
+  background-color: #000;
+  border-radius: var(--border-r);
+  box-shadow: 0 8px 12px rgba(205, 205, 205, 0.15);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .inline-video .video-wrapper.inline-video__media {
+    transition: none;
+  }
+}
+
+/* ========================================================================== */
+/*  INLINE VIDEO: CINEMA MODE (media covers both columns on large screens)     */
+/* ========================================================================== */
+
+/* ensure section is positioning context */
+.inline-video {
+  position: relative;
+}
+
+/* cinema mode video spans full width */
+.inline-video.cinema .ex3-media {
+  grid-column: 1 / -1;
+  position: relative;
+}
+
+/* CLOSE ROW — overlay instead of pushing layout */
+.inline-video.cinema .inline-video__close-row {
+  position: absolute;
+  left: 47%;
+  bottom: 5%;
+  margin: 0;
+  padding: 0;
+  width: 100rem;
+  z-index: 50;
+  pointer-events: none;
+}
+
+/* actual button */
+.inline-video.cinema .inline-video__close {
+  pointer-events: auto;
+  width: auto;
+  background: transparent;
+  font-size: 0.85rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Close row lives in the grid, directly under the media */
+.inline-video__close-row {
+  grid-column: 1 / -1;
+  grid-row: auto;
+  display: none;
+}
+
+/* Variant: close button below the video (NOT inside it) */
+.inline-video__close--below {
+  position: inherit;
+  /* overrides the absolute rule */
+  margin: 0;
+  width: 100%;
+  max-width: 100rem;
+}
+
+/* Only apply on larger screens */
+@media (min-width: 1000px) {
+
+  /* When cinema is on, media spans the full row (covers text column) */
+  .inline-video.cinema .inline-video__media {
+    grid-column: 1 / -1;
+    z-index: 50;
+    background-color: #000;
+    border-radius: var(--border-r);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.45);
+  }
+
+  /* Push the text behind + disable interaction while video overlays */
+  .inline-video.cinema .inline-video__content {
+    display: none;
+  }
+
+  /* Only show the close row during cinema mode (large screens per your JS) */
+  .inline-video.cinema .inline-video__close-row {
+    display: block;
+  }
+
+  /* Optional: align it similar to your CTAs */
+  .inline-video.cinema .inline-video__close--below {
+    justify-self: start;
+    /* left aligned under video */
+  }
+}
+
+/* ========================================================================== */
+/*  INLINE VIDEO: CLOSE BUTTON (cinema row)                                    */
+/* ========================================================================== */
+
+.inline-video__close-row {
+  grid-column: 1 / -1;
+  display: none;
+  /* only show in cinema mode */
+}
+
+.inline-video__close {
+  border: none;
+  border-radius: 100rem;
+  padding: 0.9rem 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08rem;
+  font-weight: 600;
+  color: var(--c4);
+  cursor: pointer;
+
+  /* border: 2px solid rgba(255, 255, 255, 0.25); */
+
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.inline-video__close:hover {
+  transform: translateY(-2px);
+  background: rgba(0, 0, 0, 0.7);
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.inline-video__close:active {
+  transform: translateY(0);
+  opacity: 0.8;
+}
+
+.inline-video__close:focus {
+  outline: 2px solid rgba(255, 255, 255, 0.5);
+  outline-offset: 2px;
+}
+
+/* Variant: close button below the video (the one your JS creates) */
+.inline-video__close--below {
+  width: 100%;
+  justify-self: start;
+  /* aligns like your CTAs */
+  margin: 0;
+}
+
+/* ========================================================================== */
+/*  30) SHARED SECTION TITLES / LAYOUT HELPERS                                 */
+/*  MOVE TO: css/site.css                                                      */
+/* ========================================================================== */
+.div1-2 {
+  grid-template-columns: 1fr 1fr;
+}
+
+.h2-title {
+  text-align: center;
+  grid-column: 1/3;
+  max-width: 69rem;
+  margin: 0 auto 3rem auto;
+}
+
+.h2-title hr {
+  border: transparent;
+  border-top: var(--c1) solid 0.3rem;
+  width: 4rem;
+  margin: 0.5rem auto;
+}
+
+.h2-title h2 {
+  color: var(--c4);
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 1.4rem;
+  line-height: 2rem;
+  letter-spacing: 0.1rem;
+}
+
+/* H2 Title - END */
+
+/* ========================================================================== */
+/*  40) OPTIONS / MODELS / VFS                                                  */
+/*  MOVE TO: css/models.css                                                    */
+/* ========================================================================== */
+/* Options START */
+.s-options {
+  padding: 5rem 2rem;
+}
+
+.option-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 20rem));
+  grid-gap: 1rem;
+  justify-content: center;
+}
+
+.vfs-wrapper {
+  max-width: 80rem;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(22rem, 25rem));
+  grid-gap: 1rem;
+  justify-content: center;
+}
+
+.vfs-option {
+  background: rgba(255, 255, 255, 0.056);
+  color: var(--c1);
+  display: grid;
+  grid-template-rows: auto auto;
+}
+
+.vfs-image {
+  grid-row: 1/2;
+  grid-column: 1/2;
+}
+
+.vfs-info {
+  padding: 1rem 2rem 2rem 2rem;
+  align-self: center;
+  justify-self: center;
+}
+
+.vfs-info ul {
+  display: grid;
+  grid-gap: 0.7rem;
+  margin: 1rem 0 0.6rem 0;
+}
+
+.vfs-info li {
+  font-size: 1.1rem;
+  line-height: 1.5rem;
+}
+
+.vfs-title {
+  color: var(--c4);
+  text-transform: uppercase;
+  font-size: 2rem;
+  font-weight: 200;
+  letter-spacing: 0.1rem;
+  width: 100%;
+  text-align: center;
+}
+
+.vfs-option img {
+  width: 100%;
+}
+
+.vfs-option button {
+  width: 100%;
+}
+
+.option {
+  max-width: 50rem;
+  color: var(--c4);
+  display: grid;
+  align-self: center;
+  background: rgba(255, 255, 255, 0.056);
+  padding: 2rem 1rem;
+  position: relative;
+}
+
+.option-subtitle {
+  color: var(--c4);
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  letter-spacing: 0.1rem;
+  text-align: center;
+}
+
+.main-info {
+  color: var(--c3);
+  line-height: 1.6rem;
+}
+
+.model-atts {
+  display: grid;
+  grid-gap: 0.5rem;
+  text-align: center;
+  margin-bottom: 01rem;
+}
+
+.model-atts li {
+  font-weight: 400;
+  color: var(--c4);
+}
+
+.option-p-title {
+  color: var(--c4);
+  text-transform: uppercase;
+  font-weight: 400;
+  letter-spacing: 0.1rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.option-title {
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  font-weight: 400;
+  color: var(--c4);
+  text-align: center;
+  margin-bottom: 1rem;
+  letter-spacing: 0.05rem;
+}
+
+.option .option-title img {
+  margin: 0 0 0 0;
+}
+
+.option .vfs {
+  margin-bottom: 0;
+}
+
+.vni {
+  color: var(--c3);
+  text-transform: none;
+  margin: 0 0 1rem 0;
+  letter-spacing: 0;
+}
+
+.option button {
+  margin: 0.5rem auto 0 auto;
+  max-width: 18rem;
+  width: 100%;
+}
+
+.option img {
+  width: 100%;
+  max-width: 45rem;
+  margin: 0 auto 1rem auto;
+  padding: 0 1rem;
+}
+
+.s-careers {
+  padding: 8rem 2rem;
+}
+
+.b-models .s-options {
+  padding: 5rem 2rem;
+}
+
+.option .corner-logo {
+  position: absolute;
+  width: 6rem;
+  right: 0rem;
+  top: 1rem;
+}
+
+/* ========================================================================== */
+/*  41) WHYS / SERVICE / EXPERTISE / CONTENT BLOCKS                             */
+/*  MOVE TO: likely css/site.css if used across pages, else to specific pages  */
+/* ========================================================================== */
+/* Whys */
+.s-whys {
+  padding: 8rem 0;
+}
+
+.why-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-gap: 5rem 10rem;
+  padding: 0 3rem;
+  max-width: 70rem;
+  margin: 0 auto;
+}
+
+.why h3,
+.exp-txt h3,
+.s-builds h3 {
+  font-weight: 400;
+  text-transform: uppercase;
+  color: var(--c4);
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.1rem;
+}
+
+.one-p-w h3 {
+  line-height: 2.2rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: var(--c4);
+  margin: 0;
+  letter-spacing: 0.05rem;
+  font-size: 1.5rem;
+}
+
+.rvia-img {
+  width: 18rem;
+  margin: 0 auto 1rem auto;
+}
+
+.rvia-eu-img {
+  background-image: url(images/models-bg-9.jpg);
+}
+
+/* Service */
+.s-builds p,
+.s-builds h3 {
+  max-width: 70rem;
+  margin: 0 auto;
+  padding: 0rem 1rem 1rem 1rem;
+}
+
+/* Expertise */
+.s-expertise {
+  padding: 0;
+}
+
+.expertise-wrapper {
+  display: grid;
+  padding: 0;
+}
+
+.expertise-left,
+.expertise-right {
+  display: grid;
+  grid-template-rows: 1fr;
+}
+
+.expertise-left {
+  grid-template-columns: 5fr 3fr;
+}
+
+.expertise-right {
+  grid-template-columns: 3fr 5fr;
+}
+
+.expertise-left img,
+.expertise-right img {
+  width: 100%;
+}
+
+.expertise-image {
+  height: 100%;
+  background-position: -1%, center;
+  background-size: cover;
+  background-color: black;
+}
+
+.exp-txt {
+  display: grid;
+  grid-template-rows: 1fr auto auto 1fr;
+  padding: 10rem 0;
+  background-image: linear-gradient(to right, black, rgba(182, 137, 137, 0.05));
+}
+
+.expertise-right .exp-txt {
+  justify-items: right;
+  background-image: linear-gradient(to left, black, rgba(182, 137, 137, 0.05));
+}
+
+.exp-txt h3 {
+  grid-row: 2/3;
+  max-width: 30rem;
+  padding: 0 2rem;
+  width: 100%;
+}
+
+.exp-txt p {
+  grid-row: 3/4;
+  max-width: 30rem;
+  width: 100%;
+  padding: 0 2rem;
+}
+
+/* Left-Box (Service) */
+.left-box {
+  display: grid;
+  grid-gap: 3.4rem;
+  grid-template-columns: 4fr 3fr;
+  grid-template-rows: 1fr;
+  margin: 0rem auto;
+  max-width: 80rem;
+  align-items: center;
+  padding: 5rem 2rem;
+}
+
+.left-box img {
+  width: 100%;
+  grid-column: 1/2;
+  grid-row: 1/2;
+}
+
+.left-box h3,
+.s-quote h3,
+.right-box h3,
+.s-basic h3 {
+  color: var(--c4);
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.1rem;
+  font-weight: 400;
+}
+
+/* ========================================================================== */
+/*  50) FOOTER + NEWSLETTER                                                    */
+/*  MOVE TO: css/site.css                                                      */
+/* ========================================================================== */
+/* Start - Footer */
+.footer {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  background-color: var(--c2);
+  padding: 4rem 4rem;
+}
+
+.footer h5 {
+  color: var(--c4);
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+.footer-menu {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  line-height: 1.5rem;
+  grid-gap: 3rem;
+  align-self: center;
+}
+
+.footer-nap ul {
+  display: grid;
+  grid-gap: 0.5rem;
+  line-height: 1.4rem;
+}
+
+.footer-nap {
+  grid-column: 4/5;
+  align-self: center;
+}
+
+.footer-nap li,
+.footer-menu ul a {
+  letter-spacing: 0.03rem;
+}
+
+.footer-menu a:hover,
+.back a:hover,
+.panel a:hover,
+.s-basic a:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.1rem;
+}
+
+.footer a,
+.footer p,
+.footer li {
+  font-size: 1rem;
+  line-height: 1.8rem;
+}
+
+/* Newsletter */
+.nl-subscribe {
+  max-width: 40rem;
+  margin: 0 6%;
+  background-color: rgb(46, 46, 46);
+  padding: 1.5rem;
+  grid-column: 3/4;
+}
+
+.nl-subscribe h5 {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  letter-spacing: 0.1rem;
+  line-height: 1.5rem;
+}
+
+.nl-subscribe button {
+  margin-top: 1rem;
+}
+
+.nl-subscribe p {
+  font-size: 1.2rem;
+  line-height: 2rem;
+}
+
+/* ========================================================================== */
+/*  60) SERVICES PAGE BLOCKS                                                   */
+/*  MOVE TO: css/service.css (or keep in site.css if used widely)              */
+/* ========================================================================== */
+/* Services */
+.services,
+.s-list {
+  padding: 8rem 2rem;
+}
+
+.services-list {
+  display: grid;
+  grid-template-columns: 14rem 14rem 14rem;
+  max-width: 52rem;
+  margin: 0 auto;
+  grid-gap: 1.5rem 5rem;
+}
+
+.services-list li {
+  color: var(--c4);
+  font-size: 1.2rem;
+}
+
+.services-wrapper {
+  display: grid;
+  grid-gap: 5rem;
+}
+
+.box-tr {
+  max-width: 60rem;
+  padding: 0 2rem;
+  background-image: none;
+  display: grid;
+  grid-template-columns: 15rem 1fr;
+  margin: 0 auto;
+  grid-gap: 3rem;
+}
+
+.box-tr h3 {
+  color: var(--c4);
+  margin-bottom: 1rem;
+}
+
+.box-tr div {
+  align-self: center;
+}
+
+.box-tr img {
+  width: 15rem;
+  align-self: end;
+}
+
+.box-tr-r {
+  grid-template-columns: 1fr 15rem;
+}
+
+/* ========================================================================== */
+/*  70) ACCORDION / FAQ                                                        */
+/*  MOVE TO: css/faq.css                                                       */
+/* ========================================================================== */
+/* Start - Accordion Menu */
+.accordion {
+  background-color: rgba(238, 238, 238, 0.205);
+  color: var(--c4);
+  cursor: pointer;
+  padding: 1.2rem;
+  width: 100%;
+  text-align: left;
+  border: none;
+  outline: none;
+  transition: 0.4s;
+  margin: 0.2rem auto;
+}
+
+.accordion:hover {
+  background-color:
+    /* #aa000062 */
+    var(--c1);
+}
+
+.panel {
+  padding: 0 0rem;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+
+.panel p {
+  padding: 1rem 0;
+}
+
+.b-model .panel ul {
+  margin: 0.5rem 0 1rem 0;
+}
+
+.panel-price {
+  text-align: left;
+}
+
+.panel ul li {
+  line-height: 1.8rem;
+  color: var(--c4);
+  height: 1.8rem;
+  grid-template-columns: auto 1fr;
+  grid-row: 1rem;
+  font-weight: 400;
+  list-style-type: disc;
+  list-style-position: inside;
+}
+
+.panel-link {
+  font-weight: 400;
+}
+
+.panel li span {
+  color: var(--c4);
+  text-align: left;
+  grid-column: 3/4;
+}
+
+.grid li {
+  display: grid;
+  padding: 0 0.5rem;
+}
+
+div.panel {
+  display: none;
+}
+
+div.panel.show {
+  display: block !important;
+}
+
+.s-faq {
+  padding: 5rem 2rem 5rem 2rem;
+  margin: 0 auto;
+}
+
+.w-faq {
+  max-width: 60rem;
+  margin: 0 auto;
+}
+
+.s-faq .h2-title {
+  margin-bottom: 1rem;
+}
+
+.h2-title img {
+  height: 10rem;
+}
+
+.b-faq .panel ul {
+  margin-bottom: 1rem;
+}
+
+.b-faq .panel ul li {
+  font-weight: 300;
+  font-size: 1.1rem;
+  color: var(--c3);
+}
+
+.b-faq .panel {
+  padding-bottom: 1rem;
+  max-width: 60rem;
+  margin: 0 auto;
+}
+
+/* ========================================================================== */
+/*  80) CONTACT PAGE                                                           */
+/*  MOVE TO: css/contact.css                                                   */
+/* ========================================================================== */
+.s-contact {
+  padding: 5rem 0;
+}
+
+.s-contact-wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  max-width: 52rem;
+  margin: 0 auto;
+}
+
+.contact-info {
+  max-width: 40rem;
+  font-size: 1.1rem;
+  display: grid;
+  grid-gap: 2rem;
+  padding: 2rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.contact-info ul li {
+  color: var(--c4);
+  line-height: 1.8rem;
+  letter-spacing: 0.05rem;
+}
+
+.s-contact button {
+  margin: 0 auto;
+  width: 100%;
+}
+
+.contact-info ul {
+  display: grid;
+  grid-gap: 1rem;
+}
+
+.form-control {
+  font-size: 1rem;
+  padding: 1rem;
+  border: none;
+  font-family: "Montserrat", sans-serif;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.123);
+  color: var(--c4);
+}
+
+.form-wrapper {
+  max-width: 40rem;
+  padding: 1rem;
+  display: grid;
+  grid-gap: 1rem;
+  margin: 0 auto;
+  justify-content: center;
+  grid-template-columns: 1fr 1fr;
+}
+
+.form-captcha {
+  grid-column: 1/3;
+  justify-self: center;
+}
+
+.form-message {
+  grid-column: 1/3;
+}
+
+::placeholder {
+  color: var(--c3);
+}
+
+option {
+  color: var(--c3);
+}
+
+.form-submit {
+  grid-column: 1/3;
+  width: 19rem;
+  justify-self: center;
+}
+
+.map {
+  width: 100%;
+  height: 31rem;
+}
+
+.map-w {
+  max-width: 40rem;
+  margin: 0 auto 2rem auto;
+  padding: 1rem;
+}
+
+/* ========================================================================== */
+/*  81) MODEL PAGE OVERRIDES (BUTTON + STATES)                                 */
+/*  MOVE TO: css/models.css                                                    */
+/* ========================================================================== */
+.b-model button:hover {
+  background-color: var(--c1);
+}
+
+.b-model .not-active {
+  background-color: rgba(128, 128, 128, 0.39);
+}
+
+.b-model .not-active:hover {
+  background-color: grey;
+}
+
+.b-model .title {
+  grid-column: 2/3;
+  grid-row: 2/3;
+  text-align: center;
+  padding: 1rem 2rem 1.5rem 2rem;
+  letter-spacing: 0.2rem;
+  text-transform: uppercase;
+}
+
+/* ========================================================================== */
+/*  90) GALLERY + FINISH OPTIONS + BASE PACK + UPGRADES + BASIC + CUSTOM       */
+/*  MOVE TO: css/gallery.css + css/models.css (depending on page usage)        */
+/* ========================================================================== */
+/* Gallery - START */
+.s-gallery,
+.video {
+  padding: 8rem 2rem;
+  margin: 0 auto;
+}
+
+.gallery-wrapper {
+  display: grid;
+  grid: auto auto auto / 1fr 1fr 1fr;
+
+  grid-gap: 1rem;
+  max-width: 70rem;
+}
+
+.gallery-wrapper-1 {
+  max-width: 70rem;
+  margin: 0 auto;
+}
+
+.gallery-wrapper-vfs {
+  max-width: 30rem;
+  margin: 0 auto;
+}
+
+.gallery-wrapper li {
+  background-color: var(--c3);
+  font-size: 0;
+}
+
+.gal-thumb {
+  width: 100%;
+}
+
+.gallery-sub-menu img {
+  width: 100%;
+  background-color: #aa0000;
+}
+
+.gallery-sub-menu {
+  display: grid;
+  grid: auto / 1fr 1fr 1fr;
+  grid-gap: 0 1rem;
+  padding: 1rem;
+  max-width: 90rem;
+  margin: 0 auto;
+}
+
+.gal-su-li {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 6rem 3rem;
+  grid-gap: 0.5rem;
+}
+
+.gal-su-li a {
+  grid-row: 1 / 2;
+  grid-column: 1 / 2;
+  background-color: #aa0000;
+  font-size: 0;
+}
+
+.gal-su-li ul {
+  display: grid;
+  grid-row: 2 / 3;
+  grid-column: 1 / 2;
+  margin-left: 5%;
+  grid-gap: 0.1rem;
+}
+
+.gal-su-li ul a {
+  color: var(--c4);
+  font-weight: 200;
+  text-transform: uppercase;
+  font-size: 2.5rem;
+  background-color: transparent;
+}
+
+.gal-su-li img:hover,
+.gallery-wrapper a:hover {
+  opacity: 85%;
+  transition: 0.2s;
+}
+
+.gal-su-li ul a:hover {
+  transition: 0.2s;
+  text-decoration: var(--c4) underline 0.1rem;
+  text-underline-offset: 0.2rem;
+}
+
+/* Finish Options */
+.finish-options {
+  display: grid;
+  grid-template-rows: auto auto;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-columns: 1fr;
+  grid-row: 2/3;
+  grid-gap: 0rem 3rem;
+  padding: 0 2rem 1rem 2rem;
+}
+
+.finish-options img {
+  width: 100%;
+  grid-row: 1/2;
+}
+
+.finish-options p {
+  grid-row: 2/3;
+  text-align: center;
+  font-size: 1rem;
+  color: var(--c4);
+  padding: 0.5rem 0 0 0;
+  margin-top: 0;
+}
+
+.s-finish-options .h2-title {
+  grid-row: 1/2;
+  grid-column: 1/4;
+  justify-self: center;
+  margin-bottom: 0;
+}
+
+.finish-options h3 {
+  grid-row: 1/2;
+  grid-column: 1/3;
+}
+
+/* S-Base Pack */
+.s-base-pack,
+.s-upgrades {
+  padding: 8rem 2rem;
+}
+
+.s-base-pack-wrapper {
+  display: grid;
+  grid-template-columns: 23rem 1fr;
+  grid-template-rows: 1fr;
+  column-gap: 5rem;
+  max-width: 70rem;
+  margin: 0 auto;
+}
+
+.vl-specs {
+  grid-template-columns: 1fr;
+}
+
+.specs {
+  align-self: center;
+}
+
+.vfs-specs {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.s-base-pack-img-wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto;
+  align-items: center;
+  justify-items: center;
+}
+
+.s-base-pack img {
+  width: 100%;
+}
+
+.s-base-pack h3 {
+  color: var(--c4);
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  font-weight: 400;
+  background-image: linear-gradient(to right,
+      rgba(255, 255, 255, 0.089),
+      transparent);
+  padding: 0.5rem 1rem;
+}
+
+.base-package-list {
+  display: grid;
+  grid-gap: 2rem;
+  grid-template-columns: 1fr 1fr;
+  width: 40rem;
+  grid-template-rows: repeat (4, auto);
+  color: var(--c3);
+}
+
+.base-package-list h3,
+.finish-options h3 {
+  margin-bottom: 0.3rem;
+  font-size: 1rem;
+  color: var(--c4);
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.base-package-list li {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.left-box h3,
+.s-quote h3,
+.right-box h3 {
+  color: var(--c4);
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.1rem;
+  font-weight: 400;
+}
+
+/* S-Basic */
+.s-basic {
+  display: grid;
+  margin: 0 auto;
+  max-width: 50rem;
+  padding: 8rem 2rem;
+  grid-gap: 3rem;
+}
+
+.s-basic div {
+  display: grid;
+  grid-gap: 01rem;
+}
+
+.back a {
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+}
+
+.back {
+  text-align: center;
+}
+
+/* Custom */
+.s-custom {
+  padding: 6rem 2rem;
+}
+
+.custom-wrapper {
+  max-width: 70rem;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 3rem;
+}
+
+.s-custom img {
+  width: 100%;
+  grid-column: 1 / 2;
+}
+
+.custom-info {
+  align-self: center;
+}
+
+.s-custom h2 {
+  text-transform: uppercase;
+  font-size: 2rem;
+  font-weight: 200;
+  letter-spacing: 0.1rem;
+  width: 100%;
+  line-height: 3rem;
+  margin-bottom: 0.3rem;
+}
+
+.s-custom button {
+  margin-top: 1.5rem;
+}
+
+/* ========================================================================== */
+/*  95) MISC PAGE COMPONENTS / UTILITIES (MANUAL, SOLD, JOBS, CTA)             */
+/*  MOVE TO: per-page files as appropriate                                    */
+/* ========================================================================== */
+.manual-p {
+  text-align: center;
+  padding: 1rem 2rem;
+  background-color: rgb(35, 35, 35);
+  letter-spacing: 0.03rem;
+}
+
+.window-stick-button a {
+  font-weight: 400;
+  padding: 0.2rem 0.3rem;
+  text-decoration: 0;
+  border-radius: 0.4rem;
+  transition: 0.2s;
+  background-color: rgb(130, 127, 127);
+  color: var(--c4);
+  margin-left: 0.2rem;
+}
+
+.window-stick-button a:hover {
+  background-color: var(--c1);
+  transition: 0.3s;
+  text-decoration: 0;
+}
+
+.sold {
+  grid-row: 1/2;
+  grid-column: 1/2;
+  color: var(--c4);
+  text-align: center;
+  z-index: 99;
+  align-self: center;
+  font-size: 8rem;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.job-l {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.job-l a {
+  font-size: 1.5rem;
+  letter-spacing: 0.05rem;
+}
+
+.job-l a:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.15rem;
+}
+
+.b-service .simple-h {
+  height: 16rem;
+}
+
+.one-p {
+  padding: 5rem 2rem;
+  display: grid;
+}
+
+.one-p-w {
+  display: grid;
+  max-width: 45rem;
+  grid-gap: 2rem;
+  margin: 0 auto;
+}
+
+.one-p-w ul {
+  display: grid;
+  grid-gap: 2rem;
+}
+
+.careers-wrapper {
+  display: grid;
+  grid-gap: 3rem;
+}
+
+.builder {
+  background-color: black;
+}
+
+.builder iframe {
+  border: none;
+  width: 100%;
+  height: calc(95vh - 3.3rem);
+  margin-top: 3.6rem;
+  margin-bottom: -0.5rem;
+}
+
+.s-cta-block {
+  text-align: center;
+  padding: 5rem 2rem;
+}
+
+/* ========================================================================== */
+/*  96) BLOG + ARTICLE                                                         */
+/*  MOVE TO: css/blog.css                                                      */
+/* ========================================================================== */
+.s-blog {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1rem;
+  padding: 2rem;
+  max-width: 90rem;
+  margin: 0 auto;
+}
+
+.blog-listing {
+  display: grid;
+  background-color: #272727;
+  padding: 2rem;
+  grid-gap: 2rem;
+}
+
+.bl-content p {
+  min-height: 11rem;
+}
+
+.bl-title {
+  font-size: 2rem;
+  color: var(--c4);
+  align-self: center;
+  line-height: 3rem;
+}
+
+.blog-listing img {
+  width: 10rem;
+  border-radius: 100rem;
+  border: solid transparent;
+}
+
+.blog-listing img:hover {
+  border: solid var(--c4);
+}
+
+.bl-header {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  height: 10rem;
+  grid-gap: 2rem;
+}
+
+.s-article {
+  padding: 2rem 2rem 8rem 2rem;
+}
+
+.article-wrapper {
+  display: grid;
+  grid-gap: 1rem;
+  max-width: 50rem;
+  margin: 0 auto;
+}
+
+.article-wrapper span {
+  color: var(--c4);
+  font-weight: 400;
+}
+
+.article-wrapper h4 {
+  width: auto;
+}
+
+.article-wrapper ol {
+  display: grid;
+  grid-gap: 2rem;
+}
+
+.article-wrapper ol li {
+  counter-increment: list-counter;
+  /* Increment the counter */
+  list-style: none;
+  /* Remove default styling */
+}
+
+.article-wrapper ol li::before {
+  content: counter(list-counter) ". ";
+  /* Add custom numbering */
+  color: var(--c4);
+  /* Change the color of the number */
+  font-weight: bold;
+  /* Optional: Make it bold */
+}
+
+.article-header {
+  display: grid;
+  padding: 10rem 2rem 0rem 2rem;
+  max-width: 60rem;
+  margin: 0 auto;
+  text-align: center;
+  line-height: 6rem;
+  grid-gap: 2.5rem;
+}
+
+.article-header img {
+  width: 12rem;
+  border-radius: 100rem;
+  justify-self: center;
+}
+
+.article-header h1 {
+  letter-spacing: 0.07rem;
+  font-weight: 900;
+  text-transform: none;
+}
+
+.bl-title:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.5rem;
+}
+
+/* ========================================================================== */
+/*  97) VIDEO WRAPPERS (GENERIC + INLINE YOUTUBE)                              */
+/*  MOVE TO: css/home.css or a shared css/video.css                            */
+/* ========================================================================== */
+.one-p .video-wrapper img {
+  max-width: 45rem;
+}
+
+.one-p .video-wrapper {
+  margin: 0 auto 3rem auto;
+  max-width: 45;
+}
+
+/* ===== Inline YouTube ===== */
+.video-wrapper {
+  position: relative;
+  max-height: 95vh;
+  margin: 0 auto;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  background-color: #000;
+  overflow: hidden;
+  align-items: center;
+  border-radius: var(--border-r);
+  box-shadow: none;
+  transition: box-shadow 350ms ease;
+}
+
+.video-wrapper.is-playing {
+  box-shadow: 0 8px 12px rgba(205, 205, 205, 0.15);
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* ========================================================================== */
+/*  98) RESPONSIVE - LARGE SCREENS (2400+)                                     */
+/*  KEEP HERE for now; later split by file responsibility                      */
+/* ========================================================================== */
+@media only screen and (min-width: 2400px) {
+  .sprinter144 {
+    height: 43rem;
+  }
+}
+
+/* ========================================================================== */
+/*  99) RESPONSIVE - <= 1400                                                   */
+/*  KEEP HERE for now; later split by section (nav/home/models/etc)            */
+/* ========================================================================== */
+@media only screen and (max-width: 1400px) {
+
+  .h-l div,
+  .h-r div {
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  .h-l,
+  .h-r {
+    width: 20rem;
+  }
+
+  .s-showcase-block button b {
+    font-size: 1.2rem;
+    line-height: 2rem;
+  }
+
+  .s-showcase-block button {
+    font-size: 0.8rem;
+  }
+
+  .s-story {
+    grid-gap: 4rem;
+  }
+
+  .option img {
+    margin-bottom: 1.5rem;
+  }
+
+  .shadow {
+    background-image: none;
+  }
+
+  .b-models .s-options {
+    padding: 5rem 2rem;
+  }
+
+  .b-models .option-wrapper {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .van-tour {
+    margin: 0 auto;
+    width: 55rem;
+    height: 30.95rem;
+  }
+}
+
+/* ========================================================================== */
+/*  100) RESPONSIVE - <= 1200                                                  */
+/*  NOTE: Mixed concerns (nav + home + models + blog + footer).                */
+/*  KEEP NOW; later split into each file's media queries.                      */
+/* ========================================================================== */
+@media only screen and (max-width: 1200px) {
+
+  p,
+  li {
+    font-size: 1.1rem;
+  }
+
+  .h2-title img {
+    height: 8rem;
+  }
+
+  .navbar {
+    height: var(--nav-h);
+    position: fixed;
+    z-index: 100000;
+  }
+
+  .nav-logo img {
+    position: fixed;
+  }
+
+  .nav-menu {
+    position: fixed;
+    left: -100%;
+    width: 100%;
+    text-align: center;
+    transition: 0.2s;
+    grid-template-columns: 100%;
+    display: grid;
+    grid-gap: 0rem;
+    top: var(--nav-h);
+    padding: 1rem 1rem 1rem 1rem;
+    z-index: 999;
+    max-height: calc(95vh - var(--nav-h));
+    overflow-y: auto;
+  }
+
+  .nav-menu.active {
+    left: 0;
+    background-color: var(--c2);
+    max-height: calc(95vh - 3.3rem);
+    overflow-y: auto;
+  }
+
+  .nav-link {
+    background-color: var(--c2);
+    width: 100%;
+    padding: 1rem 0;
+
+    display: inline-block;
+    color: var(--c4);
+    font-weight: 400;
+    font-size: 1.1rem;
+    text-align: left;
+  }
+
+  .tdk {
+    background-color: var(--c1);
+    color: var(--c4);
+    text-align: center;
+    margin-top: 1rem;
+  }
+
+  .hamburger {
+    display: block;
+    cursor: pointer;
+    grid-column: 3/4;
+    position: fixed;
+    right: 0rem;
+    top: 0rem;
+    width: 3.3rem;
+    height: var(--nav-h);
+    align-items: center;
+    align-content: center;
+    z-index: 99999;
+    background: var(--c2);
+  }
+
+  .hamburger.active .bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger.active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  .hamburger.active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  .nav-link:hover {
+    border-left: var(--c4) 0.15rem solid;
+    background-color: none;
+    background: #272727;
+    transition: none;
+  }
+
+  .tdk:hover {
+    background-color: #d60000;
+    text-decoration: none;
+  }
+
+  .dropdown {
+    position: static;
+    display: none;
+    padding-left: 1rem;
+    padding: 1rem;
+    width: 100%;
+    max-height: calc(95vh - 6.6rem);
+    overflow-y: auto;
+  }
+
+  .dropdown a {
+    text-align: left;
+  }
+
+  .nav-item:hover .dropdown-arrow {
+    transform: rotate(180deg);
+  }
+
+  .nav-item {
+    position: relative;
+  }
+
+  .nav-item a {
+    display: block;
+    padding: 15px 20px;
+    color: var(--c4);
+    text-decoration: none;
+  }
+
+  .nav-item:hover .dropdown {
+    display: none;
+  }
+
+  .nav-item.active .dropdown {
+    display: block;
+  }
+
+  /* FIXME: ?? */
+  .header {
+    grid-gap: 0rem;
+  }
+
+  /* Header - Index 1200 */
+  .header {
+    --hero-h: clamp(32rem, 54vw, 42rem);
+    height: 95vh;
+    position: relative;
+    overflow: hidden;
+    grid-template-columns: 1fr;
+    grid-template-rows: var(--hero-h) auto;
+    padding: 0;
+    z-index: 999;
+  }
+
+  .header .header-media {
+    background-position: 45% 0%;
+  }
+
+  .header .header-box {
+    grid-column: 1/2;
+    grid-row: 1/3;
+    align-self: center;
+    align-content: center;
+    justify-content: center;
+    width: 90%;
+    margin: 5%;
+    border-radius: var(--border-r);
+  }
+
+  .header-box h1 {
+    font-size: 4rem;
+    font-weight: 300;
+    margin-bottom: 0.5rem;
+  }
+
+  .header .header-box p {
+    color: var(--c4);
+    font-size: 1.3rem;
+    line-height: 2.6rem;
+    letter-spacing: 0.06rem;
+    margin: 0;
+  }
+
+  .header .header-box button {
+    font-size: 1.2rem;
+    padding: 1.25rem 1.5rem;
+  }
+
+  .header {
+    position: relative;
+  }
+
+  .header .header-media {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+
+  .header::after {
+    z-index: 1;
+  }
+
+  /* Header - Index - END */
+
+  /* Showcase HP 1200 */
+  .showcase-wrapper {
+    grid-gap: 1rem;
+    padding: 1rem;
+    grid-template-columns: 1fr;
+  }
+
+  .showcase {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr auto;
+    background-color: #181818;
+    display: grid;
+  }
+
+  .showcase-img {
+    grid-row: 1/2;
+    grid-column: 1/2;
+  }
+
+  .showcase-text {
+    grid-row: 2/3;
+    grid-column: 1/2;
+  }
+
+  .process img {
+    width: 2rem;
+  }
+
+  /* EX3 HP 1200 */
+  .the-ex3 {
+    margin-left: 10%;
+  }
+
+  .ex3-w {
+    grid-template-columns: 1fr;
+    padding: 2rem 1rem;
+    grid-gap: 2rem;
+    max-width: max-content;
+  }
+
+  .inline-video .ex3-w {
+    align-items: start;
+    padding: 2rem 1rem;
+    grid-gap: 2rem;
+  }
+
+  .rvia,
+  .eu {
+    padding: 2rem 1rem;
+    grid-gap: 3rem;
+  }
+
+  .ex3-txt p {
+    font-size: 1.2rem;
+    line-height: 2.2rem;
+  }
+
+  .ex3-img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    padding: 0 10%;
+    display: block;
+  }
+
+  /* rvia-eu HP 1200 */
+  .rvia-eu {
+    grid-template-columns: 1fr;
+  }
+
+  .models-title {
+    grid-gap: 1rem;
+    margin-top: 5rem;
+    padding: 1rem;
+  }
+
+  .models-title h1 {
+    font-size: 6rem;
+  }
+
+  .models-title div {
+    font-size: 2rem;
+    line-height: 3.5rem;
+  }
+
+  .s-showcase,
+  .why-wrapper {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+
+  .s-options {
+    padding: 4rem 2rem;
+  }
+
+  .option-wrapper {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .option img {
+    margin-bottom: 1rem;
+  }
+
+  .s-whys {
+    padding: 5rem 10%;
+  }
+
+  .expertise-left,
+  .expertise-right {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+
+  .left-box {
+    grid-template-columns: 1fr;
+    max-width: 50rem;
+    grid-gap: 2rem;
+  }
+
+  .exp-txt {
+    grid-row: 2/3;
+    justify-self: center;
+    background-image: none;
+    padding: 3rem 3rem 5rem 3rem;
+  }
+
+  .expertise-right .exp-txt {
+    background-image: none;
+  }
+
+  .expertise-image {
+    grid-row: 1/2;
+  }
+
+  .s-quote p,
+  .signed {
+    font-size: 1rem;
+    line-height: 1.8rem;
+  }
+
+  .footer {
+    grid-template-columns: 1fr;
+    grid-gap: 2rem;
+
+    padding: 1rem;
+  }
+
+  .nl-subscribe {
+    margin: 0;
+    max-width: 100%;
+    grid-row: 1/2;
+    padding: 2rem 1rem;
+    grid-column: 1/2;
+  }
+
+  .footer-nap {
+    grid-column: 1/2;
+    text-align: center;
+    grid-row: 2/3;
+  }
+
+  .footer-menu {
+    grid-column: 1/2;
+    grid-template-columns: auto auto auto auto;
+    justify-items: center;
+  }
+
+  .s-base-pack-wrapper {
+    grid-template-columns: 1fr;
+    max-width: 30rem;
+    grid-gap: 4rem;
+  }
+
+  .s-base-pack-img-wrapper {
+    grid-row: 1/2;
+  }
+
+  .b-model .panel li {
+    list-style-type: disc;
+    list-style-position: inside;
+  }
+
+  .van-tour {
+    margin: 0 auto;
+    width: 30rem;
+    height: 17rem;
+  }
+
+  .title button {
+    margin-top: 0.5rem;
+  }
+
+  .b-service .simple-h {
+    height: auto;
+    grid-template-rows: 3rem auto 0rem;
+  }
+
+  /* Blog */
+  .s-blog {
+    grid-template-columns: 1fr;
+  }
+
+  .bl-header {
+    text-align: center;
+  }
+
+  .bl-content {
+    display: grid;
+  }
+
+  .bl-content p {
+    min-height: auto;
+  }
+
+  .bl-header {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    height: auto;
+    justify-items: center;
+  }
+
+  .bl-content button {
+    width: 13rem;
+    justify-self: center;
+  }
+
+  /* In your layout, ex3-w stacks on mobile.
+     Make the media appear first so overlay makes sense even if order changes elsewhere. */
+  .inline-video .ex3-w {
+    position: relative;
+  }
+
+  /* Overlay the button wrapper on top of the media */
+  .inline-video .inline-video__btn {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    /* we’ll align vertically with the media box */
+    transform: translateX(50%);
+    z-index: 5;
+    pointer-events: none;
+    /* so only the actual <a> is clickable */
+    margin: 0;
+    /* avoid layout pushing */
+  }
+
+  /* Anchor (your actual button) remains clickable */
+  .inline-video .inline-video__btn a {
+    pointer-events: auto;
+  }
+
+  /* Precisely center the button within the media height */
+  .inline-video .inline-video__media {
+    position: relative;
+  }
+
+  /* The robust centering approach: place the button at 50% of the media box
+     by referencing the media’s top in the stacked layout. Since the content
+     follows the media on mobile, the media is directly above content. */
+  .inline-video .inline-video__btn {
+    bottom: calc(var(--nav-h, 0px) * 0);
+    /* no-op; keeps calc valid if you use vars */
+  }
+
+  /* Center vertically by pulling the button upward by half the media height:
+     We can do this by absolutely positioning relative to the .ex3-w and
+     using the media’s aspect height via padding trick. This is reliable if
+     your media uses an aspect ratio rule (common in your setup). */
+
+  /* If your media uses aspect-ratio, this is easiest: */
+  .inline-video .inline-video__media {
+    aspect-ratio: 16 / 9;
+    /* keep if you already have it; otherwise safe on mobile */
+    overflow: hidden;
+  }
+
+  /* Now that media has a predictable box, we can place button at its center */
+  .inline-video .inline-video__btn {
+    bottom: 15%;
+    transform: translate(-50%, -50%);
+  }
+
+  /* Hide the overlay button while playing (video is clickable anyway),
+     and because your JS turns it into "Close Video" on small screens */
+  .inline-video .inline-video__media.is-playing~.inline-video__content .inline-video__btn,
+  .inline-video .inline-video__media.is-playing+.inline-video__content .inline-video__btn {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* Optional: make sure the button stays visually on top of the thumbnail */
+  .inline-video .inline-video__btn a {
+    position: relative;
+    z-index: 6;
+  }
+
+  /* Inline MP4: stop "hero video" cropping on small screens */
+  .inline-video__media.is-playing video {
+    width: 100%;
+    height: 100% !important;
+    /* keep it filling the media box */
+    object-fit: contain !important;
+    /* show the full frame (no zoom/crop) */
+    display: block;
+  }
+
+  .inline-video .ex3-w {
+    grid-template-columns: 1fr;
+  }
+
+  /* TEXT first */
+  .inline-video .ex3-txt,
+  .inline-video .inline-video__content {
+    order: 1;
+  }
+
+  /* MEDIA second */
+  .inline-video .ex3-media,
+  .inline-video .inline-video__media {
+    order: 2;
+  }
+}
+
+/* ========================================================================== */
+/*  101) RESPONSIVE - <= 600                                                   */
+/*  NOTE: Mixed concerns; keep now; later split by file responsibility         */
+/* ========================================================================== */
+@media only screen and (max-width: 600px) {
+  body {
+    background-color: var(--c2);
+    background-repeat: repeat;
+    background-size: cover, 150%;
+    background-attachment: scroll, scroll;
+    background-position: center, center;
+  }
+
+  /* Nav Bar */
+  .top-banner {
+    bottom: unset;
+    top: var(--nav-h);
+    padding: 0.5rem;
+    width: 100%;
+  }
+
+  .top-banner span {
+    color: var(--c4);
+    font-weight: 300;
+    font-size: 14px;
+  }
+
+  .header {
+    grid-template-rows: 90vw auto;
+    background-position: 0rem 2rem;
+    height: 95vh;
+  }
+
+  .header .header-media {
+    background-position: 35% 0%;
+  }
+
+  /* Header - Index */
+  .header .header-box {
+    align-self: flex-end;
+    align-items: center;
+    grid-column: 2/3;
+    width: 100%;
+    padding: 1.5rem 1rem 2.5rem 1rem;
+    margin: 0;
+    border-radius: 0;
+  }
+
+  .header .header-box h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    line-height: 3rem;
+  }
+
+  .header .header-box button {
+    align-self: center;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: 100%;
+  }
+
+  /* Header - Index - END */
+
+  .header-title h1 {
+    font-size: 3rem;
+    line-height: 4.5rem;
+  }
+
+  .header-title span {
+    font-size: 1.6rem;
+    line-height: 2rem;
+  }
+
+  .header {
+    grid-gap: 0rem;
+  }
+
+  .models-title {
+    grid-gap: 1rem;
+    margin-top: 5rem;
+    padding: 1rem;
+  }
+
+  .models-title h1 {
+    font-size: 4rem;
+  }
+
+  .models-title div {
+    font-size: 1.5rem;
+    line-height: 2.5rem;
+  }
+
+  .option-wrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .gradient-overlay {
+    background: linear-gradient(rgba(0, 0, 0, 0.898), transparent);
+  }
+
+  .footer-menu {
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 3rem;
+    max-width: 20rem;
+    margin: 0 auto;
+    justify-items: center;
+    text-align: center;
+  }
+
+  .footer-menu ul {
+    display: grid;
+    grid-gap: 0.5rem;
+  }
+
+  .footer-menu h5 {
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.1rem;
+  }
+
+  .s-options {
+    padding: 1rem;
+  }
+
+  .why-wrapper {
+    padding: 0;
+  }
+
+  .exp-txt {
+    padding: 2rem 1rem 5rem 1rem;
+  }
+
+  .exp-txt p .exp-txt h3 {
+    padding: 0;
+  }
+
+  .ex3-img {
+    padding: 0;
+    /* remove the 10% padding if you want full-width image */
+  }
+
+  h4 {
+    line-height: 1.5rem;
+  }
+
+  .s-basic {
+    padding: 4rem 2rem;
+  }
+
+  .b-models .option-wrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .b-models .s-options {
+    padding: 4rem 1rem;
+  }
+
+  .b-service .h2-title {
+    margin-bottom: 3rem;
+  }
+
+  .services-list {
+    grid-template-columns: 14rem;
+    max-width: 14rem;
+    grid-gap: 1rem;
+  }
+
+  .box-tr {
+    grid-template-columns: 1fr;
+  }
+
+  .box-tr img {
+    grid-row: 1/2;
+    margin: 0 auto;
+    width: 10rem;
+  }
+
+  .b-model .title {
+    padding: 0;
+  }
+
+  .s-base-pack-wrapper {
+    grid-gap: 2rem;
+    max-width: 21rem;
+  }
+
+  .van-tour {
+    margin: 0 auto;
+    width: 100%;
+    height: 11rem;
+  }
+
+  .job-l a {
+    font-size: 1.2rem;
+    letter-spacing: 0rem;
+  }
+
+  .s-gallery {
+    padding: 5rem 0.5rem;
+  }
+
+  .h2-title img {
+    height: 6rem;
+  }
+
+  .s-options .h2-title {
+    margin: 4rem auto 3rem auto;
+  }
+
+  .form-wrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .form-name,
+  .form-email,
+  .form-phone,
+  .form-subject,
+  .form-message {
+    grid-column: 1/2;
+  }
+
+  .builder iframe {
+    border: none;
+    width: 100%;
+    height: 95vh;
+    min-height: 21rem;
+    margin-top: 3.6rem;
+    margin-bottom: -0.3rem;
+  }
+}
+
+.article-header h1 {
+  font-size: 2.5rem;
+  line-height: 4rem;
+}
+
+@media only screen and (max-width: 415px) {
+  .s-base-pack {
+    padding: 5rem 1rem;
+  }
+}
+
+/* ========================================================================== */
+/*  110) SLIDER                                                                */
+/*  MOVE TO: css/slider.css                                                    */
+/* ========================================================================== */
+/* Slider */
+.slider {
+  position: relative;
+  background: #000116;
+  width: 100%;
+  height: 88.5%;
+  overflow: hidden;
+}
+
+.slider .slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+.slider .slide.active {
+  opacity: 1;
+  transition: 3s;
+}
+
+.slider .slide img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.navigation {
+  height: 25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 999;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.slider:hover .navigation {
+  opacity: 1;
+}
+
+.prev-btn,
+.next-btn {
+  z-index: 999;
+  font-size: 2em;
+  color: rgba(0, 0, 0, 0.77);
+  background: rgba(255, 255, 255, 0.8);
+  padding: 10px;
+  cursor: pointer;
+  font-weight: 900;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+}
+
+.navigation-visibility {
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+}
+
+.navigation-visibility .slide-icon {
+  z-index: 999;
+  background: rgba(255, 255, 255, 0.5);
+  width: 10px;
+  height: 10px;
+  transform: translateY(-50px);
+  margin: 0 6px;
+  box-shadow: 0 5px 25px rgb(1 1 1 / 20%);
+}
+
+.navigation-visibility .slide-icon.active {
+  background: var(--c4);
+}
+
+@media (max-width: 900px) {
+  .slider {
+    width: 100%;
+  }
+
+  .slider .slide .info {
+    position: relative;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 500px) {
+  .slider .slide .info h2 {
+    font-size: 1.8em;
+    line-height: 40px;
+  }
+
+  .slider .slide .info p {
+    font-size: 0.9em;
+  }
+}
+
+/* End Slider */
+
+/* ========================================================================== */
+/*  120) TOOLTIP (TT)                                                          */
+/*  MOVE TO: css/models.css (if only models/options) or css/site.css if global */
+/* ========================================================================== */
+.tt {
+  position: absolute;
+  cursor: pointer;
+  font-weight: 400;
+  color: var(--c4);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  width: 23rem;
+  padding: 0 0.5rem;
+}
+
+.tt .ttm {
+  visibility: hidden;
+  width: 120px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: var(--c4);
+  padding: 2rem;
+  width: 23rem;
+  top: -5%;
+  left: 23rem;
+  position: absolute;
+  z-index: 1;
+  line-height: 1.4rem;
+  opacity: 0;
+  font-weight: 300;
+  letter-spacing: 0.03rem;
+}
+
+.tt:hover .ttm {
+  visibility: visible;
+  opacity: 1;
+  transition: 0.5s;
+}
+
+.tt:hover {
+  background-color: var(--c1);
+  transition: 0.3s;
+}
+
+.grid .litt {
+  padding: 0;
+  display: grid;
+}
+
+@media only screen and (max-width: 1300px) {
+  .royalSlider {
+    width: 60rem;
+    height: 40rem;
+  }
+
+  .rs-vfs {
+    width: 30rem;
+    height: 20rem;
+  }
+}
+
+@media only screen and (max-width: 1100px) {
+  .royalSlider {
+    width: 40rem;
+    height: 26.666rem;
+  }
+
+  .tt {
+    width: 30rem;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .tt .ttm {
+    width: 100%;
+    top: 100%;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.877);
+    padding: 1rem 1.5rem 1.5rem 1.5rem;
+  }
+}
+
+@media only screen and (max-width: 750px) {
+  .royalSlider {
+    width: 20rem;
+    height: 13.332rem;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .tt {
+    width: 21rem;
+  }
+}
+
+@media only screen and (max-width: 420px) {
+  .sold {
+    font-size: 6rem;
+  }
+}
+
+/* ========================================================================== */
+/*  130) FINANCING                                                             */
+/*  MOVE TO: css/financing.css                                                 */
+/* ========================================================================== */
+.financing {
+  display: grid;
+  grid-template-columns: 1fr 25rem;
+  grid-column-gap: 3rem;
+  max-width: 70rem;
+  margin: 0 auto;
+  padding: 0 2rem 0 2rem;
+}
+
+.preapp img {
+  width: 5rem;
+  margin: 1rem auto 1rem auto;
+}
+
+.preapp {
+  display: grid;
+  background-color: var(--c4);
+  align-self: center;
+  justify-content: center;
+  text-align: center;
+  grid-gap: 0.5rem;
+  padding: 2rem;
+}
+
+.preapp h2 {
+  font-weight: 900;
+  color: var(--c2);
+}
+
+.financing .h2-title {
+  grid-column: 1 / 3;
+}
+
+.preapp li {
+  color: var(--c2);
+  line-height: 2rem;
+  list-style: square;
+  list-style-position: inside;
+}
+
+.financing-content ul {
+  width: 20rem;
+  margin: 2rem auto 0 auto;
+}
+
+.financing-content li {
+  line-height: 2rem;
+  list-style: square;
+  list-style-position: inside;
+  color: var(--c4);
+  letter-spacing: 0.02rem;
+  font-size: 1.1rem;
+}
+
+.financing iframe {
+  width: 100%;
+  height: 100%;
+}
+
+.iframe-wrapper {
+  width: 900px;
+  height: 1465px;
+  margin: 0 auto;
+  padding: 5rem 0;
+}
+
+@media (max-width: 1000px) {
+  .financing {
+    grid-template-columns: 1fr;
+    grid-column-gap: 3rem;
+    max-width: 70rem;
+    margin: 0 auto;
+    padding: 0 1rem 0 1rem;
+  }
+
+  .financing .h2-title,
+  .preapp,
+  .financing-content {
+    grid-column: 1 / 2;
+  }
+
+  .preapp {
+    margin-top: 2rem;
+  }
+
+  .financing-content ul {
+    margin: 1rem auto 0 auto;
+  }
+
+  .iframe-wrapper {
+    width: 360px;
+    height: 2325px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 380px) {
+  .financing {
+    padding: 0 1rem 1rem 1rem;
+  }
+}

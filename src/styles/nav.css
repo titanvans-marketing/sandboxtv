@@ -1,0 +1,1745 @@
+/* =========================================================
+   NAV TOKENS
+   Reads from theme-dark.css
+   ========================================================= */
+
+:root {
+  --c1: var(--theme-accent);
+  --c2: var(--theme-black);
+  --c3: var(--theme-neutral-300);
+  --c4: var(--theme-white);
+  --c5: var(--theme-neutral-50a);
+
+  --hover-c1: var(--theme-accent-hover);
+  --hover-c2: var(--theme-black);
+  --hover-c3: var(--theme-black);
+
+  --nav-h: 3.3rem;
+  --banner-h: 2.7;
+
+  --border-r: 3px;
+  --button-border-r: 3rem;
+
+  --nav-surface-bg: var(--theme-surface-glass);
+  --nav-surface-bg-strong: var(--theme-surface-glass-strong);
+  --nav-surface-border: var(--theme-border);
+  --nav-surface-border-strong: var(--theme-border-stronger);
+  --nav-surface-shadow: var(--theme-shadow-surface);
+  --nav-surface-blur: var(--theme-blur-lg);
+
+  --nav-item-bg: var(--theme-surface-white-04);
+  --nav-item-bg-hover: var(--theme-surface-white-08);
+  --nav-item-bg-active: var(--theme-surface-white-10);
+  --nav-item-border: var(--theme-border-soft);
+  --nav-item-border-strong: var(--theme-border-strong);
+  --nav-item-radius: var(--theme-radius-sm);
+}
+
+/* Tooltip container */
+.tooltip {
+  position: relative;
+  display: inline-block;
+  /* border-bottom: 1px dotted black */
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  /* Position the tooltip text */
+  position: absolute;
+  z-index: 1;
+  top: 125%;
+  right: 50%;
+  margin-right: -16px;
+  /* Fade in tooltip */
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+/* Tooltip arrow */
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: -30%;
+  right: 10%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent #555 transparent;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Shared layout / stacking
+|--------------------------------------------------------------------------
+*/
+
+/* Prevents navbar and dropdowns from clipping visible overlays. */
+.navbar,
+.navbar .nav-item,
+.navbar .dropdown-parent,
+.site-header--portal {
+  overflow: visible;
+}
+
+/* Creates a stacking context for portal-specific header pages. */
+.site-header--portal {
+  position: relative;
+  z-index: 50;
+}
+
+/* Keeps the section after the portal header layered beneath it. */
+.site-header--portal + * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Locks page scrolling while the mobile nav menu is open. */
+body.nav-open {
+  overflow: hidden;
+}
+
+/* Locks page scrolling when the mobile menu or a desktop dropdown is open. */
+html.nav-open,
+html.nav-dropdown-open,
+body.nav-open,
+body.nav-dropdown-open {
+  overflow: hidden;
+}
+
+/* Full-screen backdrop behind the nav containers and above the page content. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 900;
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  background: rgba(8, 10, 14, 0.28);
+  backdrop-filter: blur(14px) saturate(115%);
+  -webkit-backdrop-filter: blur(14px) saturate(115%);
+
+  transition:
+    opacity 0.24s ease,
+    visibility 0.24s ease,
+    backdrop-filter 0.24s ease,
+    -webkit-backdrop-filter 0.24s ease,
+    background-color 0.24s ease;
+}
+
+/* Desktop dropdown backdrop */
+body.nav-dropdown-open::before {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+
+  background: rgba(8, 10, 14, 0.3);
+  backdrop-filter: blur(16px) saturate(118%);
+  -webkit-backdrop-filter: blur(16px) saturate(118%);
+}
+
+/* Mobile menu backdrop */
+body.nav-open::before {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+
+  background: rgba(8, 10, 14, 0.42);
+  backdrop-filter: blur(20px) saturate(125%);
+  -webkit-backdrop-filter: blur(20px) saturate(125%);
+}
+
+/*
+|--------------------------------------------------------------------------
+| Navbar shell
+|--------------------------------------------------------------------------
+*/
+
+/* Main fixed navbar styled to match the dropdown surface. */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000000000;
+
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+
+  width: 100%;
+  min-height: var(--nav-h);
+
+  background: var(--nav-surface-bg);
+  border-bottom: 1px solid var(--theme-surface-white-04);
+  box-shadow: var(--nav-surface-shadow);
+
+  backdrop-filter: var(--nav-surface-blur);
+  -webkit-backdrop-filter: var(--nav-surface-blur);
+}
+
+/* Holds the logo and any brand content on the left side. */
+.nav-brand-cluster {
+  grid-column: 1 / 2;
+
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+
+  max-height: 52px;
+  min-width: 0;
+  flex-shrink: 0;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/* Wraps and vertically centers the logo link. */
+.nav-logo {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--nav-h);
+  height: var(--nav-h);
+}
+
+/* Controls the logo image size inside the navbar. */
+.nav-logo img {
+  display: block;
+  width: 11rem;
+  height: auto;
+}
+
+/* Controls the logo image size inside the navbar. */
+.nav-logo-timber img {
+  display: block;
+  width: 26px;
+  height: auto;
+}
+
+/* Styles the Home link that sits beside the logo on desktop. */
+.nav-link--brand-home,
+.nav-link--login {
+  width: auto;
+  min-height: calc(var(--nav-h) - 0.4rem);
+  justify-content: center;
+  white-space: nowrap;
+}
+
+/* Keeps the old Home-link spacing even when the Home button is removed. */
+.nav-brand-home-spacer {
+  width: 5.5rem;
+  /* adjust if your old Home link was wider/narrower */
+  min-height: calc(var(--nav-h) - 0.4rem);
+  flex: 0 0 auto;
+}
+
+.nav-link--login {
+  gap: 0.55rem;
+}
+
+.nav-link--login__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+/* Desktop wrapper for centered navigation and right-side actions. */
+.nav-panel {
+  grid-column: 2 / 4;
+
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  min-width: 0;
+}
+
+/* Hides the hamburger until the mobile breakpoint. */
+.hamburger {
+  display: none;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Main nav items
+|--------------------------------------------------------------------------
+*/
+
+/* Base list reset shared by the centered nav and right action rail. */
+.nav-menu,
+.nav-actions {
+  margin: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1 / 4;
+}
+
+/* Centers the main desktop navigation group. */
+.nav-menu--center {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 0;
+  min-width: 0;
+  padding: 0rem 0;
+}
+
+/* Right-aligned container for DIY and Login actions. */
+.nav-actions {
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-end;
+  min-width: max-content;
+  padding: 0.35rem 0.45rem 0.35rem 0;
+}
+
+/* Each top-level nav item container. */
+.nav-item {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+}
+
+/* Base top-level nav link styling. */
+.nav-link {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.35rem;
+
+  padding: 0.9rem 1rem;
+
+  color: var(--c4);
+  font-size: 0.98rem;
+  font-weight: 400;
+  line-height: 1.2;
+  text-decoration: none;
+}
+
+/* Adds positioning and shared animation behavior to non-DIY nav links. */
+.nav-item > .nav-link:not(.tdk) {
+  position: relative;
+  isolation: isolate;
+  border-radius: var(--nav-item-radius);
+
+  transition:
+    color 0.22s ease,
+    opacity 0.22s ease,
+    transform 0.22s ease;
+}
+
+/* Shows pointer behavior on dropdown trigger links. */
+.nav-link--trigger {
+  cursor: pointer;
+}
+
+/* Keeps dropdown trigger text and chevron aligned on one row. */
+.dropdown-parent > .nav-link {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Creates a compact card surface behind non-DIY top-level nav links. */
+.nav-item > .nav-link:not(.tdk)::before {
+  content: "";
+  position: absolute;
+  inset: 0.2rem;
+  border-radius: var(--nav-item-radius);
+
+  background: var(--nav-item-bg);
+  border: 1px solid transparent;
+
+  opacity: 0;
+  transform: translateY(-1px) scale(0.985);
+
+  transition:
+    opacity 0.22s ease,
+    transform 0.22s ease,
+    background-color 0.22s ease,
+    border-color 0.22s ease,
+    box-shadow 0.22s ease;
+
+  z-index: -1;
+}
+
+/* Styles the dropdown chevron wrapper next to trigger text. */
+.dropdown-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1rem;
+  height: 1rem;
+  margin-left: 0.22rem;
+
+  opacity: 0.78;
+  transform-origin: 50% 45%;
+
+  transition:
+    transform 0.22s ease,
+    opacity 0.22s ease;
+}
+
+/* Sizes the chevron icon itself. */
+.dropdown-arrow i {
+  font-size: 0.72rem;
+  line-height: 1;
+}
+
+/* Styles the three bars of the hamburger menu icon. */
+.bar {
+  display: block;
+  width: 25px;
+  height: 2px;
+  margin: 3px auto;
+  background-color: var(--c4);
+  transition: all 0.3s ease-in-out;
+}
+
+/* Base hover and keyboard focus styling for nav links. */
+.nav-link:hover,
+.nav-link:focus-visible {
+  color: var(--c4);
+  outline: none;
+  text-decoration: none;
+}
+
+/* Shared engaged state for hover, focus, open, and active nav items. */
+.nav-item:is(:hover, :focus-within, .is-open, .active) > .nav-link:not(.tdk),
+.nav-item > .nav-link:not(.tdk):is(.active, [aria-expanded="true"]) {
+  color: var(--c4);
+  text-decoration: none;
+  transform: translateY(1px);
+}
+
+/* Reveals a dropdown-card-like plate on engaged top-level nav items. */
+.nav-item:is(:hover, :focus-within, .is-open, .active)
+  > .nav-link:not(.tdk)::before,
+.nav-item > .nav-link:not(.tdk):is(.active, [aria-expanded="true"])::before {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  background: var(--nav-item-bg-hover);
+  border-color: var(--nav-item-border);
+  box-shadow: var(--theme-shadow-white-inset), var(--theme-shadow-press);
+}
+
+/* Rotates the chevron when its related nav item is engaged. */
+.nav-item:is(:hover, :focus-within, .is-open, .active)
+  > .nav-link
+  .dropdown-arrow,
+.nav-item > .nav-link:is(.active, [aria-expanded="true"]) .dropdown-arrow {
+  opacity: 1;
+  transform: rotate(180deg);
+}
+
+/*
+|--------------------------------------------------------------------------
+| DIY Van Kits button
+|--------------------------------------------------------------------------
+*/
+
+/* Styles the standalone red DIY Van Kits button. */
+.tdk {
+  background: linear-gradient(
+    180deg,
+    var(--theme-accent) 0%,
+    var(--theme-accent-darker) 100%
+  );
+  color: var(--theme-text-main-soft);
+
+  border: 1px solid var(--theme-surface-white-14);
+  border-radius: var(--nav-item-radius);
+
+  margin: 0.2rem 0 0.2rem 0.5rem;
+  padding: 0.8rem 1.2rem;
+
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.045em;
+  line-height: 1;
+  text-transform: none;
+  text-decoration: none;
+
+  text-shadow: 0 1px 6px var(--theme-surface-white-08);
+  box-shadow:
+    0 0 0.35rem var(--theme-accent-glow-18),
+    0 0 1rem var(--theme-accent-glow-20),
+    0 0 2rem var(--theme-accent-glow-14),
+    0 10px 24px var(--theme-shadow-black-24);
+
+  transition:
+    background-color 0.22s ease,
+    color 0.22s ease,
+    transform 0.22s ease,
+    box-shadow 0.22s ease,
+    border-color 0.22s ease;
+}
+
+/* Keeps the DIY button using its own hover behavior instead of nav press styles. */
+.tdk:hover,
+.tdk:focus-visible,
+.nav-item:is(:hover, :focus-within, .is-open, .active) > .tdk,
+.nav-item > .tdk:is(.active, [aria-expanded="true"]) {
+  background: linear-gradient(
+    180deg,
+    var(--theme-accent-hover) 0%,
+    var(--theme-accent) 100%
+  );
+  color: var(--theme-white);
+  text-decoration: none;
+  transform: translateY(-1px);
+  border-color: var(--theme-surface-white-20);
+  box-shadow:
+    0 0 0.45rem var(--theme-accent-glow-24),
+    0 0 1.15rem var(--theme-accent-glow-24),
+    0 0 2.3rem var(--theme-accent-glow-18b),
+    0 12px 28px var(--theme-shadow-black-28);
+}
+
+/* Prevents nav pseudo-elements from appearing on the DIY button. */
+.tdk::before,
+.tdk::after {
+  content: none !important;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Secondary action buttons (My Cart / Login)
+|--------------------------------------------------------------------------
+*/
+
+/* Styles right-side action links similar to DIY, but darker and less bright. */
+.nav-actions .nav-link--login {
+  width: auto;
+  min-height: calc(var(--nav-h) - 0.4rem);
+  justify-content: center;
+  gap: 0.55rem;
+
+  margin: 0.2rem 0 0.2rem 0.5rem;
+  padding: 0.8rem 1.1rem;
+
+  color: var(--theme-text-main-soft);
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+
+  background: linear-gradient(
+    180deg,
+    var(--theme-overlay-neutral-30-96) 0%,
+    var(--theme-overlay-neutral-20-96) 100%
+  );
+  border: 1px solid var(--theme-surface-white-12);
+  border-radius: var(--nav-item-radius);
+
+  text-shadow: 0 1px 6px var(--theme-surface-white-05);
+  box-shadow:
+    0 0 0.3rem var(--theme-surface-white-04),
+    0 0 0.85rem var(--theme-shadow-black-20),
+    0 10px 22px var(--theme-shadow-black-20);
+
+  transition:
+    background-color 0.22s ease,
+    color 0.22s ease,
+    transform 0.22s ease,
+    box-shadow 0.22s ease,
+    border-color 0.22s ease;
+}
+
+/* Prevents the normal nav hover plate from showing behind the button. */
+.nav-actions .nav-link--login::before,
+.nav-actions .nav-link--login::after {
+  content: none !important;
+}
+
+/* Hover, focus, and active states for My Cart / Login buttons. */
+.nav-actions .nav-link--login:hover,
+.nav-actions .nav-link--login:focus-visible,
+.nav-actions .nav-link--login.active,
+.nav-actions
+  .nav-item:is(:hover, :focus-within, .is-open, .active)
+  > .nav-link--login {
+  background: linear-gradient(
+    180deg,
+    var(--theme-overlay-neutral-40-98) 0%,
+    var(--theme-overlay-neutral-30-98) 100%
+  );
+  color: var(--theme-white);
+  text-decoration: none;
+  transform: translateY(-1px);
+  border-color: var(--theme-surface-white-18);
+  box-shadow:
+    0 0 0.35rem var(--theme-surface-white-05),
+    0 0 1rem var(--theme-shadow-black-24),
+    0 12px 26px var(--theme-shadow-black-24);
+}
+
+/* Keeps the icon visually balanced in the secondary action buttons. */
+.nav-actions .nav-link--login__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1rem;
+  min-width: 1rem;
+  font-size: 0.95rem;
+  line-height: 1;
+  opacity: 0.92;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Shared dropdown styles
+| Desktop-first defaults
+|--------------------------------------------------------------------------
+*/
+
+/* Base dropdown panel for standard and mega dropdowns. */
+.dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% + 0.4rem);
+  left: 50%;
+  transform: translateX(-50%);
+
+  min-width: 18rem;
+  max-width: min(92vw, 24rem);
+  width: max-content;
+
+  margin: 0;
+  padding: 0.9rem;
+
+  list-style: none;
+  color: var(--c4);
+
+  background: var(--theme-overlay-black-20);
+
+  border: 1px solid var(--theme-surface-white-14);
+
+  border-radius: var(--theme-radius-md);
+
+  box-sizing: border-box;
+  text-shadow: none;
+  overflow: hidden;
+  isolation: isolate;
+
+  box-shadow:
+    0 1.5rem 3rem var(--theme-shadow-black-42),
+    0 0 0 1px var(--theme-surface-white-045) inset;
+
+  z-index: 1000;
+}
+
+/* CONTROLS BACKGROUND COLOR OF MEGA NAV CONTAINER */
+/* Heavy blur and darkening layer behind dropdown content. */
+.dropdown::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+
+  background: var(--nav-surface-bg);
+
+  backdrop-filter: var(--theme-blur-xl) saturate(155%) brightness(0.76);
+  -webkit-backdrop-filter: var(--theme-blur-xl) saturate(155%) brightness(0.76);
+}
+
+/* Keeps dropdown content above the blur layer. */
+.dropdown > li,
+.dropdown > .dropdown-account-summary,
+.dropdown > .dropdown-form-item {
+  position: relative;
+  z-index: 1;
+}
+
+/* Right-align helper for dropdowns that should not be centered. */
+.dd-last {
+  left: auto;
+  right: 0;
+  transform: none;
+}
+
+/* Makes each dropdown item span the panel width. */
+.dropdown li {
+  display: block;
+  width: 100%;
+}
+
+/* Adds vertical spacing between stacked dropdown items. */
+.dropdown li + li {
+  margin-top: 0.3rem;
+}
+
+/* Base card styling for dropdown item containers. */
+.dropdown a {
+  display: grid;
+  gap: 0.28rem;
+  width: 100%;
+  box-sizing: border-box;
+
+  padding: 0.95rem 1rem;
+
+  color: var(--c4);
+  line-height: 1.35;
+  white-space: normal;
+  text-decoration: none;
+
+  background: var(--theme-surface-white-08);
+  border: 1px solid var(--theme-surface-white-09);
+  border-radius: var(--theme-radius-sm);
+
+  transition:
+    background-color 0.22s ease,
+    transform 0.22s ease,
+    opacity 0.22s ease,
+    border-color 0.22s ease,
+    box-shadow 0.22s ease;
+}
+
+/* Stronger hover and focus styling for dropdown cards. */
+.dropdown a:hover,
+.dropdown a:focus-visible {
+  background: var(--theme-surface-white-12);
+  border-color: var(--theme-surface-white-18);
+  text-decoration: none;
+  outline: none;
+  transform: translateY(-1px);
+  box-shadow: 0 0.95rem 2rem var(--theme-shadow-black-24);
+}
+
+/* Styles the main title text inside dropdown cards. */
+.dropdown-link__title {
+  display: block;
+  min-width: 0;
+  font-size: 0.98rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+/* Styles supporting description text inside dropdown cards. */
+.dropdown-link__desc {
+  display: block;
+  min-width: 0;
+  max-width: 34ch;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  opacity: 0.8;
+}
+
+/* Groups eyebrow, title, and description in a compact text stack. */
+.dropdown-link__content {
+  display: grid;
+  gap: 0.28rem;
+  min-width: 0;
+}
+
+/* Styles the small uppercase eyebrow label above dropdown titles. */
+.dropdown-link__eyebrow {
+  display: inline-block;
+  min-width: 0;
+  margin-bottom: 0.08rem;
+
+  font-size: 0.72rem;
+  line-height: 1.1;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--theme-text-eyebrow-soft);
+}
+
+/* Hides dropdown media by default until desktop layout rules show it. */
+.dropdown-link__media {
+  display: none;
+}
+
+/* Opens standard dropdowns on hover and JS-open desktop state. */
+.nav-item:hover > .dropdown,
+.nav-item.is-open > .dropdown {
+  display: block;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Portal dropdown only
+|--------------------------------------------------------------------------
+*/
+
+/* Styles the portal trigger label text. */
+.navbar--portal .nav-link--portal_label {
+  color: var(--c4);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.2;
+  text-decoration: none;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    opacity 0.25s ease,
+    text-decoration-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+/* Aligns the portal trigger icon and label. */
+.navbar--portal .nav-link--portal {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  text-decoration: none;
+}
+
+/* Sizes the portal trigger icon. */
+.navbar--portal .nav-link--portal__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.1rem;
+  min-width: 1.1rem;
+  font-size: 0.95rem;
+  line-height: 1;
+}
+
+/* Establishes positioning for the portal nav item. */
+.navbar--portal .nav-item--portal {
+  position: relative;
+}
+
+/* Ensures active portal links remain fully visible. */
+.navbar--portal .nav-item--portal > .nav-link.active {
+  opacity: 1;
+}
+
+/* Positions the portal account dropdown near the right side of the nav. */
+.navbar--portal .dropdown--portal {
+  position: absolute;
+  top: 2rem;
+  left: auto;
+  right: 3rem;
+  transform: none;
+  min-width: 280px;
+  max-width: 320px;
+  z-index: 9999;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* Styles the account summary block at the top of the portal dropdown. */
+.navbar--portal .dropdown-account-summary {
+  display: flex;
+  gap: 0.85rem;
+  align-items: flex-start;
+  padding: 1rem;
+  border-bottom: 1px solid var(--theme-surface-white-10);
+  cursor: default;
+}
+
+/* Styles the icon tile shown in the portal account summary. */
+.navbar--portal .dropdown-account-summary__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 2.1rem;
+  min-width: 2.1rem;
+  height: 2.1rem;
+
+  border-radius: var(--theme-radius-sm);
+  background: var(--theme-surface-white-08);
+  border: 1px solid var(--theme-surface-white-09);
+
+  font-size: 1rem;
+  line-height: 1;
+}
+
+/* Allows account summary text to shrink cleanly. */
+.navbar--portal .dropdown-account-summary__content {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+/* Styles the eyebrow text in the account summary. */
+.navbar--portal .dropdown-account-summary__eyebrow {
+  margin-bottom: 0.2rem;
+  font-size: 0.68rem;
+  line-height: 1.1;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.72;
+}
+
+/* Styles the main account name text. */
+.navbar--portal .dropdown-account-summary__name {
+  margin-bottom: 0.15rem;
+  overflow: hidden;
+  font-size: 0.96rem;
+  font-weight: 700;
+  line-height: 1.25;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* Styles the account email text. */
+.navbar--portal .dropdown-account-summary__email {
+  font-size: 0.8rem;
+  line-height: 1.3;
+  word-break: break-word;
+  opacity: 0.82;
+}
+
+/* Aligns portal dropdown links and logout button content. */
+.navbar--portal .dropdown--portal li > a,
+.navbar--portal .dropdown-logout-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* Sizes icons inside the portal dropdown rows. */
+.navbar--portal .dropdown-item__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.1rem;
+  min-width: 1.1rem;
+  font-size: 0.95rem;
+  line-height: 1;
+  opacity: 0.9;
+}
+
+/* Removes extra padding from the logout form wrapper. */
+.navbar--portal .dropdown-form-item {
+  padding: 0;
+}
+
+/* Makes the logout form fill the dropdown width. */
+.navbar--portal .dropdown-logout-form {
+  width: 100%;
+  margin: 0;
+}
+
+/* Styles the logout button like the other portal dropdown cards. */
+.navbar--portal .dropdown-logout-btn {
+  width: 100%;
+  padding: 0.95rem 1rem;
+
+  color: inherit;
+  font: inherit;
+  text-align: left;
+
+  background: var(--theme-surface-white-08);
+  border: 1px solid var(--theme-surface-white-09);
+  border-radius: var(--theme-radius-sm);
+  cursor: pointer;
+}
+
+/* Adds slight icon motion on portal hover states. */
+.navbar--portal .dropdown--portal li > a:hover .dropdown-item__icon,
+.navbar--portal .dropdown-logout-btn:hover .dropdown-item__icon,
+.navbar--portal .dropdown--portal li > a.active .dropdown-item__icon {
+  transform: translateX(1px);
+}
+
+/* Adds smooth motion to portal icons. */
+.navbar--portal .dropdown-item__icon,
+.navbar--portal .nav-link--portal__icon,
+.navbar--portal .dropdown-account-summary__icon i {
+  transition:
+    transform 180ms ease,
+    opacity 180ms ease;
+}
+
+/* Adds hover and focus styling to the logout row. */
+.navbar--portal .dropdown-logout-btn:hover,
+.navbar--portal .dropdown-logout-btn:focus-visible {
+  background: var(--theme-surface-white-12);
+  border-color: var(--theme-surface-white-18);
+  outline: none;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Large desktops and laptops
+| Resolution range: 1201px and wider
+|--------------------------------------------------------------------------
+*/
+
+@media only screen and (min-width: 1201px) {
+  /* Converts mega dropdowns into centered desktop panels. */
+  .dropdown--mega {
+    display: none;
+
+    position: fixed;
+    top: calc(100% + 0.4rem);
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+
+    width: min(94vw, 58rem);
+    max-width: min(94vw, 58rem);
+    min-width: 36rem;
+
+    padding: 1rem;
+    gap: 0.9rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: stretch;
+
+    /* background: var(--theme-overlay-black-20); */
+
+    border: 1px solid var(--theme-surface-white-04);
+
+    border-radius: var(--theme-radius-md);
+
+    overflow: hidden;
+    isolation: isolate;
+
+    box-shadow:
+      0 1.5rem 3rem var(--theme-shadow-black-42),
+      0 0 0 1px var(--theme-surface-white-045) inset;
+
+    z-index: 2000;
+  }
+
+  /* Heavy blur and darkening layer for mega dropdowns. */
+  .dropdown--mega::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+
+    /* background: linear-gradient(
+      180deg,
+      var(--theme-overlay-dark-92) 0%,
+      var(--theme-overlay-dark-96) 100%
+    );
+
+    backdrop-filter: var(--theme-blur-xl) saturate(155%) brightness(0.76);
+    -webkit-backdrop-filter: var(--theme-blur-xl) saturate(155%)
+      brightness(0.76); */
+  }
+
+  /* Keeps mega dropdown content above the blur layer. */
+  .dropdown--mega > li {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Makes the parent item the anchor for right-aligned mega dropdowns. */
+  .dropdown-parent--anchor-right {
+    position: relative;
+  }
+
+  /* Right-aligns certain mega dropdowns from the parent item. */
+  .dropdown-parent--anchor-right > .dropdown--mega {
+    position: absolute;
+    top: calc(100% + 0.4rem);
+    left: auto;
+    right: 0;
+    transform: none;
+    z-index: 2000;
+  }
+
+  /* Preserves desktop width for anchored-right menu-grid dropdowns. */
+  .dropdown-parent--anchor-right > .dropdown--menu-grid {
+    width: min(94vw, 56rem);
+    max-width: min(94vw, 56rem);
+    min-width: 38rem;
+  }
+
+  /* Preserves desktop width for anchored-right models dropdowns. */
+  .dropdown-parent--anchor-right > .dropdown--models {
+    width: min(95vw, 72rem);
+    max-width: min(95vw, 72rem);
+    min-width: 52rem;
+  }
+
+  /* Nudges a mega dropdown slightly right without fully anchoring it. */
+  .dropdown-parent--nudge-right > .dropdown--mega {
+    left: 58%;
+    transform: translateX(-58%);
+  }
+
+  /* Displays mega dropdowns as grid layouts on desktop when open. */
+  .nav-item:hover > .dropdown--mega,
+  .nav-item.is-open > .dropdown--mega {
+    display: grid;
+  }
+
+  /* Removes stacked spacing once mega dropdowns switch to grid layout. */
+  .dropdown--mega li,
+  .dropdown--mega li + li {
+    margin-top: 0;
+  }
+
+  /* Styles each mega menu card/link. */
+  .dropdown--mega > li > a {
+    height: 100%;
+    min-height: 7.25rem;
+    padding: 1rem;
+    align-content: start;
+
+    background: var(--theme-surface-white-08);
+    border: 1px solid var(--theme-surface-white-09);
+    border-radius: var(--theme-radius-sm);
+  }
+
+  /* Adds stronger hover and focus styling to desktop mega cards. */
+  .dropdown--mega > li > a:hover,
+  .dropdown--mega > li > a:focus-visible {
+    background: var(--theme-surface-white-12);
+    border-color: var(--theme-surface-white-18);
+    box-shadow: 0 0.95rem 2rem var(--theme-shadow-black-24);
+  }
+
+  /* Defines the size and column structure for menu-grid dropdowns. */
+  .dropdown--menu-grid {
+    width: min(94vw, 56rem);
+    max-width: min(94vw, 56rem);
+    min-width: 38rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  /* Lays out icon/image and text side by side in menu-grid cards. */
+  .dropdown--menu-grid > li > a {
+    display: grid;
+    grid-template-columns: 64px minmax(0, 1fr);
+    gap: 0.95rem;
+    align-items: center;
+    min-height: 7.25rem;
+  }
+
+  /* Shows and styles media blocks inside desktop menu-grid cards -- e.g., reddish background behind icons */
+  .dropdown--menu-grid .dropdown-link__media {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 64px;
+    height: 64px;
+    background-size: contain;
+
+    flex-shrink: 0;
+    overflow: hidden;
+
+    border-radius: var(--theme-radius-sm);
+
+    background: linear-gradient(
+      135deg,
+      var(--theme-accent-soft-18),
+      var(--theme-surface-white-05)
+    );
+
+    border: 1px solid var(--theme-surface-white-09);
+  }
+
+  /* Makes menu-grid images fill the media container cleanly. */
+  .dropdown--menu-grid .dropdown-link__media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Makes menu-grid images fill the media container cleanly. */
+  .dropdown--menu-grid .dropdown-link__img img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  /* Sizes the icon-only media treatment in menu-grid cards. */
+  .dropdown--menu-grid .dropdown-link__media--icon i {
+    color: var(--theme-text-main-soft-2);
+    font-size: 1.2rem;
+    line-height: 1;
+  }
+
+  /* Keeps menu-grid text content stacked and shrink-safe. */
+  .dropdown--menu-grid .dropdown-link__content {
+    display: grid;
+    gap: 0.28rem;
+    min-width: 0;
+  }
+
+  /* Lets menu-grid descriptions use the full text column width. */
+  .dropdown--menu-grid .dropdown-link__desc {
+    max-width: none;
+  }
+
+  /* Defines the size and grid structure for the models mega dropdown. */
+  .dropdown--models {
+    width: min(95vw, 72rem);
+    max-width: min(95vw, 72rem);
+    min-width: 52rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  /* Lays out model image and text side by side in models cards. */
+  .dropdown--models > li > a {
+    display: grid;
+    grid-template-columns: 118px minmax(0, 1fr);
+    gap: 1rem;
+    align-items: center;
+    min-height: 8.5rem;
+    padding: 1rem;
+  }
+
+  /* Shows and styles the larger media block for model cards. -- e.g., background for the model image cards */
+  .dropdown--models .dropdown-link__media {
+    display: block;
+    width: 118px;
+    height: 88px;
+    overflow: hidden;
+
+    border-radius: var(--theme-radius-sm);
+
+    background: linear-gradient(
+      135deg,
+      var(--theme-surface-white-14),
+      var(--theme-surface-white-04)
+    );
+
+    border: 1px solid var(--theme-surface-white-09);
+  }
+
+  /* Makes model images fill their media area cleanly. */
+  .dropdown--models .dropdown-link__media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Makes the final models item span the full mega dropdown width. */
+  .dropdown--models > li:last-child {
+    grid-column: 1 / -1;
+  }
+
+  /* Enlarges the final all-models card layout. */
+  .dropdown--models > li:last-child > a {
+    grid-template-columns: 148px minmax(0, 1fr);
+    min-height: 7.25rem;
+  }
+
+  /* Enlarges the media block in the final models item. */
+  .dropdown--models > li:last-child .dropdown-link__media {
+    width: 148px;
+    height: 92px;
+  }
+
+  /* Slightly adjusts the portal dropdown position on desktop. */
+  .navbar--portal .dropdown--portal {
+    position: absolute;
+    top: 4rem;
+    right: 0rem;
+    left: auto;
+    transform: none;
+  }
+
+  .navbar.is-esc-closing .nav-item:hover > .dropdown,
+  .navbar.is-esc-closing .nav-item:hover > .dropdown--mega,
+  .navbar.is-esc-closing .nav-item:focus-within > .dropdown,
+  .navbar.is-esc-closing .nav-item:focus-within > .dropdown--mega {
+    display: none !important;
+  }
+
+  .navbar.is-esc-closing .nav-item:hover > .nav-link .dropdown-arrow,
+  .navbar.is-esc-closing .nav-item:focus-within > .nav-link .dropdown-arrow {
+    transform: none !important;
+  }
+}
+
+/*
+|--------------------------------------------------------------------------
+| Tablets, small laptops, and all phones
+| Resolution range: 0px to 1200px
+|--------------------------------------------------------------------------
+*/
+
+@media only screen and (max-width: 1200px) {
+  /* Keeps the navbar height fixed on smaller layouts. */
+  .navbar {
+    height: var(--nav-h);
+    z-index: 100000;
+    background: var(--nav-surface-bg-strong);
+    box-shadow: var(--nav-surface-shadow);
+    backdrop-filter: var(--nav-surface-blur);
+    -webkit-backdrop-filter: var(--nav-surface-blur);
+  }
+
+  /* Limits the brand cluster width beside the hamburger button. */
+  .nav-brand-cluster {
+    min-height: var(--nav-h);
+    max-width: calc(100% - 4.5rem);
+  }
+
+  /* Keeps the logo-attached desktop Home CTA out of the stacked mobile header. */
+  .nav-link--brand-home {
+    display: none;
+  }
+
+  /* Converts the desktop nav into a full-screen slide-in mobile panel. */
+  .nav-panel {
+    position: fixed;
+    inset: var(--nav-h) 0 0 0;
+
+    display: grid;
+    align-content: start;
+    gap: 0;
+    grid-column: 1/4;
+    list-style: none;
+
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    min-width: 0;
+
+    width: 100%;
+    height: calc(100dvh - var(--nav-h));
+    max-width: 100dvw;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0rem 1rem 0rem;
+    text-align: left;
+    transform: translateX(-100%);
+
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+      transform 0.25s ease,
+      visibility 0.25s ease;
+
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    z-index: 99999;
+
+    background: rgba(10, 12, 16, 0.68);
+    
+    backdrop-filter: blur(22px) saturate(135%);
+    -webkit-backdrop-filter: blur(22px) saturate(135%);
+
+    border-top: 1px solid var(--theme-surface-white-08);
+    box-shadow: 0 18px 40px var(--theme-shadow-black-28);
+
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Slides the mobile nav panel into view. */
+  .nav-panel.active {
+    transform: translateX(0);
+    visibility: visible;
+    pointer-events: auto;
+
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .nav-panel.active::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Stacks the centered nav group and right-side actions inside the mobile menu. */
+  .nav-menu--center,
+  .nav-actions {
+    display: grid;
+    grid-column: 1/4;
+
+    grid-template-columns: 100%;
+    grid-auto-flow: row;
+
+    align-content: start;
+    gap: 0;
+    width: 100%;
+    padding: 0;
+  }
+
+  .nav-actions {
+    margin-top: 1rem;
+  }
+
+  /* Stacks top-level nav items vertically on smaller screens. */
+  .nav-item {
+    display: block;
+    width: 100%;
+  }
+
+  /* Restyles nav links for the stacked mobile menu layout. */
+  .nav-link {
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    padding: 1rem 0;
+
+    color: var(--c4);
+    font-size: 1.04rem;
+    font-weight: 400;
+    text-align: left;
+
+    background-color: transparent;
+    border-bottom: 1px solid var(--theme-surface-white-08);
+  }
+
+  /* Pushes the chevron to the far right in mobile trigger rows. */
+  .nav-link--trigger {
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  /* Hides desktop nav pseudo-elements on mobile. */
+  .nav-item > .nav-link::before,
+  .nav-item > .nav-link::after {
+    display: none;
+  }
+
+  /* Prevents pressed-state transform shifts on mobile nav links. */
+  .nav-item:is(:hover, :focus-within, .is-open, .active) > .nav-link:not(.tdk),
+  .nav-item > .nav-link:not(.tdk):is(.active, [aria-expanded="true"]) {
+    transform: none;
+  }
+
+  /* Keeps the mobile chevron fully visible. */
+  .dropdown-arrow {
+    opacity: 1;
+  }
+
+  /* Displays and positions the hamburger button on mobile. */
+  .hamburger {
+    display: flex;
+    position: fixed;
+    top: 0;
+    right: 0;
+    grid-column: 3 / 4;
+
+    width: 3.6rem;
+    height: var(--nav-h);
+
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    cursor: pointer;
+    z-index: 99999;
+    background: transparent;
+  }
+
+  /* Hides the middle bar in the active hamburger icon. */
+  .hamburger.active .bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  /* Rotates the top bar into the close icon. */
+  .hamburger.active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  /* Rotates the bottom bar into the close icon. */
+  .hamburger.active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  /* Adds a mobile row highlight similar to dropdown hover cards. */
+  .nav-link:hover,
+  .nav-link:focus-visible {
+    padding-left: 0.85rem;
+    text-decoration: none;
+    background: var(--theme-surface-white-05);
+    border-left: 0.15rem solid var(--c4);
+    transition: none;
+  }
+
+  /* Expands the DIY button to full width in the mobile menu. */
+  .tdk {
+    width: 100%;
+    justify-content: center;
+
+    margin: 1rem 0 0;
+    padding: 1rem;
+
+    border-bottom: 0;
+    border-radius: var(--nav-item-radius);
+
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 0.045em;
+    text-shadow: 0 1px 6px var(--theme-surface-white-08);
+
+    box-shadow:
+      0 0 0.35rem var(--theme-accent-glow-18),
+      0 0 1rem var(--theme-accent-glow-20),
+      0 0 1.8rem var(--theme-accent-glow-14);
+  }
+
+  /* Preserves the DIY button's custom hover and focus behavior on mobile. */
+  .tdk:hover,
+  .tdk:focus-visible {
+    padding-left: 1rem;
+    background: linear-gradient(
+      180deg,
+      var(--theme-accent-hover) 0%,
+      var(--theme-accent) 100%
+    );
+    border-left: 0;
+    transform: none;
+  }
+
+  /* Expands My Cart and Login into full-width secondary buttons on mobile. */
+  .nav-actions .nav-link--login {
+    width: 100%;
+    justify-content: center;
+
+    margin: 0.75rem 0 0;
+    padding: 1rem;
+
+    border-bottom: 0;
+    border-left: 0;
+    border-radius: var(--nav-item-radius);
+  }
+
+  /* Keeps button behavior clean on mobile. */
+  .nav-actions .nav-link--login:hover,
+  .nav-actions .nav-link--login:focus-visible,
+  .nav-actions .nav-link--login.active {
+    padding-left: 1rem;
+    border-left: 0;
+    transform: none;
+  }
+
+  /* Converts dropdowns into inline stacked mobile sections. */
+  .dropdown {
+    display: none;
+    position: static;
+    top: auto;
+    left: auto;
+    right: auto;
+    transform: none;
+
+    width: 100%;
+    min-width: 0;
+    max-width: none;
+
+    margin: 0;
+    padding: 0.35rem 0 0.75rem;
+
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    overflow: visible;
+    isolation: auto;
+  }
+
+  /* Removes the desktop blur layer on mobile stacked dropdown content. */
+  .dropdown::before,
+  .dropdown--mega::before {
+    content: none;
+  }
+
+  /* Reduces vertical spacing between stacked mobile dropdown items. */
+  .dropdown li + li {
+    margin-top: 0.15rem;
+  }
+
+  /* Styles dropdown links as indented stacked rows on mobile. */
+  .dropdown a {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.8rem 0 0.8rem 1rem;
+
+    background: transparent;
+    border: 1px solid transparent;
+    border-left: 2px solid var(--theme-surface-white-08);
+    border-radius: 0;
+    transform: none;
+    box-shadow: none;
+  }
+
+  /* Adds subtle hover and focus treatment to mobile dropdown rows. */
+  .dropdown a:hover,
+  .dropdown a:focus-visible {
+    background: var(--theme-surface-white-05);
+    border-color: transparent;
+    transform: none;
+    box-shadow: none;
+  }
+
+  /* Slightly reduces dropdown title size on mobile. */
+  .dropdown-link__title {
+    font-size: 0.95rem;
+  }
+
+  /* Lets descriptions use the full width and reduces their size on mobile. */
+  .dropdown-link__desc {
+    max-width: none;
+    font-size: 0.8rem;
+    line-height: 1.4;
+    opacity: 0.78;
+  }
+
+  /* Hides dropdown media previews in the mobile menu. */
+  .dropdown-link__media {
+    display: none !important;
+  }
+
+  /* Keeps dropdown text content tightly stacked on mobile. */
+  .dropdown-link__content {
+    display: grid;
+    gap: 0.2rem;
+    min-width: 0;
+  }
+
+  /* Allows mobile dropdown text children to shrink safely. */
+  .dropdown-link__title,
+  .dropdown-link__desc,
+  .dropdown-link__eyebrow {
+    min-width: 0;
+  }
+
+  /* Slightly reduces the eyebrow label size on mobile. */
+  .dropdown-link__eyebrow {
+    font-size: 0.68rem;
+    opacity: 0.68;
+  }
+
+  /* Prevents desktop hover-open behavior from firing on mobile. */
+  .nav-item:hover > .dropdown,
+  .nav-item.is-open > .dropdown {
+    display: none;
+  }
+
+  /* Prevents desktop hover-open chevron behavior from firing on mobile. */
+  .nav-item:hover > .nav-link .dropdown-arrow,
+  .nav-item.is-open > .nav-link .dropdown-arrow {
+    transform: none;
+  }
+
+  /* Shows the dropdown only when the mobile item has the JS active class. */
+  .nav-item.active > .dropdown {
+    display: block;
+  }
+
+  /* Rotates the chevron only for active mobile dropdown items. */
+  .nav-item.active > .nav-link .dropdown-arrow {
+    transform: rotate(180deg);
+  }
+
+  /* Resets right-aligned desktop dropdown helper positioning on mobile. */
+  .dd-last {
+    left: auto;
+    right: auto;
+    transform: none;
+  }
+
+  /* Forces all mega dropdown variants into a single-column mobile stack. */
+  .dropdown--mega,
+  .dropdown--models,
+  .dropdown--menu-grid {
+    width: 100%;
+    min-width: 0;
+    max-width: none;
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  /* Removes desktop card styling from mega dropdown links on mobile. */
+  .dropdown--mega > li > a,
+  .dropdown--models > li > a,
+  .dropdown--menu-grid > li > a {
+    min-height: 0;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+  }
+
+  /* Makes the portal dropdown behave like a normal stacked mobile section. */
+  .navbar--portal .dropdown--portal {
+    position: static;
+    right: auto;
+    left: auto;
+    width: 100%;
+    min-width: 0;
+    max-width: none;
+    transform: none;
+  }
+
+  /* Restyles the account summary block for the mobile menu. */
+  .navbar--portal .dropdown-account-summary {
+    margin: 0.3rem 0 0.75rem;
+    padding: 0.9rem 1rem;
+    background: var(--theme-surface-white-05);
+    border: 0;
+    border-radius: calc(var(--border-r) * 0.75);
+  }
+
+  /* Slightly reduces gap spacing for mobile portal action rows. */
+  .navbar--portal .dropdown--portal li > a,
+  .navbar--portal .dropdown-logout-btn {
+    gap: 0.7rem;
+  }
+
+  /* Adds mobile-style indentation to the portal logout row. */
+  .navbar--portal .dropdown-logout-btn {
+    padding: 0.8rem 0 0.8rem 1rem;
+    background: transparent;
+    border: 0;
+    border-left: 2px solid var(--theme-surface-white-08);
+    border-radius: 0;
+  }
+
+  /* Adds subtle hover/focus background for the mobile logout row. */
+  .navbar--portal .dropdown-logout-btn:hover,
+  .navbar--portal .dropdown-logout-btn:focus-visible {
+    background: var(--theme-surface-white-05);
+    border-color: transparent;
+  }
+}
+
+/*
+|--------------------------------------------------------------------------
+| Smaller tablets and larger phones
+| Resolution range: 0px to 860px
+|--------------------------------------------------------------------------
+*/
+
+@media (max-width: 860px) {
+  /* Slightly tightens spacing in the portal brand area on smaller screens. */
+  .navbar--portal .nav-brand-cluster {
+    gap: 0.55rem;
+  }
+}
+
+/*
+|--------------------------------------------------------------------------
+| Small phones
+| Resolution range: 0px to 640px
+|--------------------------------------------------------------------------
+*/
+
+@media (max-width: 640px) {
+  /* Reduces left-side brand padding on small phone layouts. */
+  .nav-brand-cluster {
+    padding-left: 0.8rem;
+  }
+
+  /* Slightly shrinks the logo image on small phones. */
+  .nav-logo img {
+    width: 9.75rem;
+  }
+
+  /* Gives the portal brand cluster more space beside the hamburger. */
+  .navbar--portal .nav-brand-cluster {
+    max-width: calc(100% - 72px);
+  }
+}

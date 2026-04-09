@@ -1,0 +1,161 @@
+:root {
+    --c1: #aa0000;
+    --c2: #000;
+    --c3: #b6b6b6;
+    --c4: #ffffff;
+
+    --c5: rgba(0.5, 0.5, 0.5, 0.5);
+
+    --hover-c1: #ac1111;
+    --hover-c2: #000;
+    --hover-c3: #000;
+
+    --nav-h: 3.3rem;
+    --banner-h: 2.7;
+
+    --border-r: 3px;
+    --button-border-r: 3rem;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Work Sans", sans-serif;
+    list-style: none;
+    font-weight: 300;
+    color: var(--c3);
+}
+
+.portal-page,
+.portal-main,
+.portal-container,
+.portal-shell,
+.portal-auth {
+    padding-top: calc(var(--nav-h) + 1.5rem);
+}
+
+body.portal-page {
+    background-color: var(--c2);
+    background-repeat: no-repeat;
+    background-size: cover, cover;
+    background-attachment: scroll, fixed;
+    background-position: center, center;
+}
+
+.portal-page .site-main {
+    max-width: 1000px;
+    padding: 0rem;
+    margin: 0 auto;
+    /* margin-top: var(--nav-h); */
+}
+
+.portal-page .card,
+.portal-page .auth-card,
+.portal-page .section-card,
+.portal-page .intro-card,
+.portal-page .vehicle-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+    /* background: #fff; */
+}
+
+.portal-page .message {
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+    border-radius: 6px;
+}
+
+.portal-page .message.error {
+    background: #ffe5e5;
+    color: #990000;
+}
+
+.portal-page .message.success {
+    /* background: #e8f7e8; */
+    color: #1f6b1f;
+}
+
+.portal-page .form-row {
+    margin-bottom: 1rem;
+}
+
+.portal-page label {
+    display: block;
+    margin-bottom: 0.35rem;
+    font-weight: 700;
+}
+
+.portal-page input,
+.portal-page textarea,
+.portal-page select {
+    width: 100%;
+    padding: 0.7rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font: inherit;
+}
+
+.portal-page textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.portal-page button {
+    padding: 0.8rem 1.2rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font: inherit;
+}
+
+.portal-page .actions,
+.portal-page .helper-links,
+.portal-page .vehicle-actions {
+    margin-top: 1rem;
+}
+
+.portal-page .actions a,
+.portal-page .vehicle-actions a {
+    display: inline-block;
+    margin-right: 1rem;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.portal-page .vehicle-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.portal-page .vehicle-list li {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    list-style: none;
+}
+
+.portal-page .vehicle-title {
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.portal-page .vehicle-meta {
+    color: #ddd;
+    margin-bottom: 0.5rem;
+}
+
+.portal-page .empty-state {
+    color: #555;
+}
+
+@media (max-width: 640px) {
+    .portal-page .site-main {
+        padding: 1rem;
+    }
+}

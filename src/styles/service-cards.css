@@ -1,0 +1,766 @@
+/* =========================================================
+   SERVICE CARDS
+   Ecommerce-style product grid for services and upgrades
+   Theme-driven from theme-dark.css
+   ========================================================= */
+
+:root {
+  --svc-page-bg: var(--theme-black);
+  --svc-page-bg-soft: var(--theme-surface-card-1);
+
+  --svc-card-bg: var(--theme-surface-card-1);
+  --svc-card-bg-soft: var(--theme-surface-card-2);
+  --svc-card-bg-hover: var(--theme-surface-card-3);
+
+  --svc-card-border: var(--theme-border-soft);
+  --svc-card-border-hover: var(--theme-border-stronger);
+
+  --svc-card-shadow: var(--theme-shadow-card);
+  --svc-card-shadow-hover: var(--theme-shadow-card-hover);
+
+  --svc-text-strong: var(--theme-text-strong);
+  --svc-text-main: var(--theme-text-main);
+  --svc-text-muted: var(--theme-text-muted);
+  --svc-text-soft: var(--theme-text-soft);
+
+  --svc-surface-soft: var(--theme-surface-card-2);
+  --svc-surface-soft-2: var(--theme-surface-card-3);
+  --svc-divider: var(--theme-divider);
+
+  --svc-accent: var(--theme-accent);
+  --svc-accent-hover: var(--theme-accent-deep);
+  --svc-accent-shadow: var(--theme-accent-box-24);
+  --svc-accent-soft: var(--theme-accent-soft);
+  --svc-accent-soft-border: var(--theme-accent-soft-border);
+
+  --svc-success-bg: var(--theme-success-bg);
+  --svc-success-text: var(--theme-success-text);
+  --svc-success-border: var(--theme-success-border);
+
+  --svc-info-bg: var(--theme-info-bg);
+  --svc-info-text: var(--theme-info-text);
+  --svc-info-border: var(--theme-info-border);
+
+  --svc-radius-lg: var(--theme-radius-lg);
+  --svc-radius-md: var(--theme-radius-md);
+  --svc-radius-pill: var(--theme-radius-pill);
+
+  --svc-grid-max-width: 1380px;
+  --svc-grid-gap: clamp(1rem, 1vw + 0.65rem, 1.5rem);
+  --svc-grid-side-padding: clamp(0.25rem, 1vw, 0.85rem);
+}
+
+/* =========================================================
+   SECTION BACKGROUND
+   ========================================================= */
+
+.service-cards-section,
+.service-packages-section {
+  background:
+    radial-gradient(circle at top left, rgba(170, 0, 0, 0.05), transparent 32%),
+    linear-gradient(180deg, var(--svc-page-bg) 0%, var(--svc-page-bg-soft) 100%);
+}
+
+/* =========================================================
+   RESULTS META
+   ========================================================= */
+
+.service-results-meta {
+  width: min(100%, var(--svc-grid-max-width));
+  margin: 0 auto 1rem;
+  padding-inline: var(--svc-grid-side-padding);
+}
+
+.service-results-title {
+  margin: 0;
+  color: var(--svc-text-muted);
+  font-size: 0.92rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+/* =========================================================
+   GRID
+   Count-aware layout so cards do not stretch too wide
+   ========================================================= */
+
+.service-packages-grid {
+  display: grid;
+  width: min(100%, var(--svc-grid-max-width));
+  margin-inline: auto;
+  padding-inline: var(--svc-grid-side-padding);
+  gap: var(--svc-grid-gap);
+  align-items: stretch;
+  justify-content: center;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+/* Section width variants */
+
+.service-packages-grid--services {
+  --svc-grid-max-width: 1380px;
+}
+
+.service-packages-grid--upgrades {
+  --svc-grid-max-width: 1380px;
+}
+
+.service-packages-grid--checkout {
+  --svc-grid-max-width: 1100px;
+}
+
+/* Count-aware desktop layouts */
+
+.service-packages-grid.service-grid-count-1 {
+  grid-template-columns: minmax(280px, 420px);
+}
+
+.service-packages-grid.service-grid-count-2 {
+  grid-template-columns: repeat(2, minmax(280px, 420px));
+}
+
+.service-packages-grid.service-grid-count-3 {
+  grid-template-columns: repeat(3, minmax(260px, 360px));
+}
+
+.service-packages-grid.service-grid-count-4 {
+  grid-template-columns: repeat(4, minmax(240px, 1fr));
+}
+
+.service-packages-grid.service-grid-count-5,
+.service-packages-grid.service-grid-count-6,
+.service-packages-grid.service-grid-count-7,
+.service-packages-grid.service-grid-count-8 {
+  grid-template-columns: repeat(4, minmax(240px, 1fr));
+}
+
+/* Upgrades often look better slightly less dense */
+
+.service-packages-grid--upgrades.service-grid-count-4,
+.service-packages-grid--upgrades.service-grid-count-5,
+.service-packages-grid--upgrades.service-grid-count-6 {
+  grid-template-columns: repeat(4, minmax(240px, 1fr));
+}
+
+/* =========================================================
+   CARD
+   ========================================================= */
+
+.service-card,
+.service-packages-grid .service-options {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 100%;
+  background: linear-gradient(
+    180deg,
+    var(--theme-overlay-surface-90) 0%,
+    var(--theme-overlay-surface-96) 100%
+  );
+  border: 1px solid var(--svc-card-border);
+  border-radius: var(--svc-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--svc-card-shadow);
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease,
+    border-color 0.22s ease,
+    background-color 0.22s ease;
+}
+
+.service-card:hover,
+.service-packages-grid .service-options:hover {
+  transform: translateY(-4px);
+  background: linear-gradient(
+    180deg,
+    var(--theme-surface-card-hover) 0%,
+    var(--theme-overlay-surface-96) 100%
+  );
+  border-color: var(--svc-card-border-hover);
+  box-shadow: var(--svc-card-shadow-hover);
+}
+
+/* Subtle type-based variation */
+
+.service-card[data-service-type="upgrade"] {
+  border-color: rgba(170, 0, 0, 0.18);
+  box-shadow:
+    0 18px 36px rgba(0, 0, 0, 0.28),
+    0 0 0 1px rgba(170, 0, 0, 0.06);
+}
+
+.service-card[data-service-type="upgrade"]:hover {
+  border-color: rgba(170, 0, 0, 0.32);
+}
+
+/* =========================================================
+   BADGE
+   ========================================================= */
+
+.service-card-badge {
+  --badge-bg: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(255, 255, 255, 0.04) 100%
+  );
+  --badge-border: var(--theme-border-soft);
+  --badge-text: var(--theme-text-strong);
+  --badge-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+
+  position: absolute;
+  top: 0.85rem;
+  left: 0.85rem;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  min-height: 2rem;
+  max-width: calc(100% - 1.7rem);
+  padding: 0.38rem 0.72rem;
+  border-radius: 999px;
+  background: var(--badge-bg);
+  border: 1px solid var(--badge-border);
+  color: var(--badge-text);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: var(--badge-shadow);
+}
+
+/* Badge variants */
+
+.service-card-badge--service {
+  --badge-bg: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  --badge-border: rgba(255, 255, 255, 0.14);
+  --badge-text: var(--theme-text-main);
+}
+
+.service-card-badge--upgrade {
+  --badge-bg: linear-gradient(
+    180deg,
+    rgba(170, 0, 0, 0.24) 0%,
+    rgba(120, 0, 0, 0.18) 100%
+  );
+  --badge-border: rgba(170, 0, 0, 0.38);
+  --badge-text: #ffd7d7;
+  --badge-shadow: 0 10px 24px rgba(120, 0, 0, 0.24);
+}
+
+.service-card-badge--featured,
+.service-card-badge--popular {
+  --badge-bg: linear-gradient(
+    180deg,
+    rgba(170, 0, 0, 0.32) 0%,
+    rgba(130, 0, 0, 0.24) 100%
+  );
+  --badge-border: rgba(210, 60, 60, 0.45);
+  --badge-text: #fff1f1;
+  --badge-shadow: 0 10px 24px rgba(170, 0, 0, 0.28);
+}
+
+.service-card-badge--new {
+  --badge-bg: linear-gradient(
+    180deg,
+    rgba(190, 25, 25, 0.34) 0%,
+    rgba(120, 0, 0, 0.24) 100%
+  );
+  --badge-border: rgba(255, 120, 120, 0.35);
+  --badge-text: #fff3f3;
+}
+
+.service-card-badge--limited,
+.service-card-badge--seasonal {
+  --badge-bg: linear-gradient(
+    180deg,
+    rgba(132, 92, 35, 0.28) 0%,
+    rgba(98, 66, 20, 0.2) 100%
+  );
+  --badge-border: rgba(194, 150, 76, 0.34);
+  --badge-text: #f4dec2;
+}
+
+.service-card-badge--included,
+.service-card-badge--recommended {
+  --badge-bg: linear-gradient(
+    180deg,
+    rgba(39, 94, 68, 0.3) 0%,
+    rgba(22, 63, 44, 0.24) 100%
+  );
+  --badge-border: rgba(98, 168, 128, 0.34);
+  --badge-text: #d9f3e3;
+}
+
+/* =========================================================
+   IMAGE AREA
+   ========================================================= */
+
+.service-card-media {
+  position: relative;
+  background: linear-gradient(
+    180deg,
+    var(--svc-surface-soft) 0%,
+    var(--svc-surface-soft-2) 100%
+  );
+  border-bottom: 1px solid var(--svc-divider);
+}
+
+.service-options-img-ctr {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 220px;
+  max-height: 220px;
+  padding: 1rem 1rem 0.9rem;
+  overflow: hidden;
+}
+
+.service-options-img-ctr img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 185px;
+  object-fit: contain;
+  transition:
+    transform 0.25s ease,
+    filter 0.25s ease;
+  filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.28));
+}
+
+.service-card:hover .service-options-img-ctr img,
+.service-packages-grid .service-options:hover .service-options-img-ctr img {
+  transform: scale(1.035);
+  filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.34));
+}
+
+/* =========================================================
+   BODY
+   ========================================================= */
+
+.service-card-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.service-card-header {
+  margin-bottom: 0.7rem;
+}
+
+.service-card-title,
+.service-card h3,
+.service-packages-grid .service-options h3 {
+  margin: 0;
+  color: var(--svc-text-strong);
+  font-size: 1.04rem;
+  font-weight: 800;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  transition: color 0.18s ease;
+}
+
+.service-card-subtitle {
+  margin: 0.35rem 0 0;
+  color: var(--svc-text-muted);
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
+.service-card-description,
+.service-desc {
+  margin: 0 0 1rem;
+  color: var(--svc-text-soft);
+  font-size: 0.95rem;
+  line-height: 1.55;
+  display: -webkit-box;
+  line-clamp: 3;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 4.45em;
+}
+
+/* =========================================================
+   META / PILLS
+   ========================================================= */
+
+.service-card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-bottom: 1rem;
+}
+
+.service-card-pill,
+.service-time,
+.service-model-badge {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.22rem;
+  min-height: 2.9rem;
+  padding: 0.65rem 0.8rem;
+  background: linear-gradient(
+    180deg,
+    var(--svc-surface-soft) 0%,
+    var(--svc-surface-soft-2) 100%
+  );
+  border: 1px solid var(--svc-divider);
+  border-radius: var(--svc-radius-md);
+  box-shadow: inset 0 1px 0 var(--theme-surface-soft-1);
+}
+
+.service-card-pill__label {
+  color: var(--svc-text-muted);
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1.1;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.service-card-pill__value,
+.service-model-badge__value {
+  color: var(--svc-text-main);
+  font-size: 0.88rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+/* =========================================================
+   FOOTER / PRICE / ACTIONS
+   ========================================================= */
+
+.service-card-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-top: auto;
+  padding-top: 0.9rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.service-card-price,
+.pars-price {
+  margin: 0;
+  color: var(--theme-text-strong);
+  font-size: 1.45rem;
+  font-weight: 900;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.service-card-price .price-accent,
+.pars-price .price-accent {
+  color: var(--svc-accent);
+}
+
+.service-card[data-service-type="upgrade"] .service-card-price,
+.service-card[data-service-type="upgrade"] .pars-price {
+  color: #fff2f2;
+}
+
+.service-card-actions {
+  display: grid;
+  gap: 0.6rem;
+  width: 100%;
+}
+
+/* =========================================================
+   CTA BUTTONS
+   Primary + secondary buttons share the same structure
+   ========================================================= */
+
+.service-card-button,
+.service-packages-grid .service-options .learn-more {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.5rem;
+  gap: 0.7rem;
+  width: 100%;
+  min-height: 3.15rem;
+  padding: 0.9rem 1.05rem;
+  border: 1px solid rgba(170, 0, 0, 0.2);
+  outline: none;
+  border-radius: var(--svc-radius-pill);
+  background: linear-gradient(
+    180deg,
+    var(--svc-accent) 0%,
+    var(--theme-accent-deep) 100%
+  );
+  color: var(--theme-white);
+  text-decoration: none;
+  box-shadow:
+    0 10px 22px rgba(170, 0, 0, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.14);
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.service-card-button:hover,
+.service-packages-grid .service-options .learn-more:hover {
+  transform: translateY(-1px);
+  border-color: rgba(170, 0, 0, 0.35);
+  background: linear-gradient(
+    180deg,
+    var(--theme-accent-hover) 0%,
+    var(--svc-accent-hover) 100%
+  );
+  box-shadow:
+    0 14px 26px rgba(170, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+
+.service-card-button:active,
+.service-packages-grid .service-options .learn-more:active {
+  transform: translateY(0);
+}
+
+.service-card-button:focus-visible,
+.service-packages-grid .service-options .learn-more:focus-visible {
+  outline: 3px solid rgba(170, 0, 0, 0.26);
+  outline-offset: 2px;
+}
+
+.service-card-button__label {
+  display: inline-block;
+  min-width: 0;
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.service-card-button__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.1rem;
+  height: 1.1rem;
+  flex: 0 0 1.1rem;
+  line-height: 1;
+  opacity: 0.94;
+  transform: translate3d(0, 0, 0);
+  transform-origin: center;
+  will-change: transform, opacity;
+  transition:
+    transform 0.22s ease,
+    opacity 0.22s ease;
+}
+
+.service-card-button__icon i {
+  display: block;
+  font-size: 0.9rem;
+  line-height: 1;
+}
+
+/* Default hover motion */
+
+.service-card-button:hover .service-card-button__icon,
+.service-packages-grid .service-options .learn-more:hover .service-card-button__icon {
+  transform: translate3d(4px, 0, 0);
+  opacity: 1;
+}
+
+/* Remove state */
+
+.service-card-button[data-button-state="remove"] {
+  background: linear-gradient(
+    180deg,
+    var(--theme-accent-deep) 0%,
+    #7f0000 100%
+  );
+  border-color: rgba(170, 0, 0, 0.34);
+}
+
+.service-card-button[data-button-state="remove"]:hover .service-card-button__icon,
+.service-packages-grid
+  .service-options
+  .learn-more[data-button-state="remove"]:hover
+  .service-card-button__icon {
+  transform: rotate(90deg);
+}
+
+/* Secondary CTA */
+
+.service-card-button--secondary {
+  background: linear-gradient(
+    180deg,
+    var(--theme-info-bg) 0%,
+    var(--theme-info-border) 100%
+  );
+  color: var(--svc-text-main);
+  box-shadow:
+    inset 0 1px 0 var(--theme-surface-soft-1),
+    0 8px 18px rgba(0, 0, 0, 0.16);
+}
+
+.service-card-button--secondary:hover {
+  border-color: var(--svc-card-border-hover);
+  background: linear-gradient(
+    180deg,
+    var(--theme-surface-card-hover) 0%,
+    var(--theme-info-bg) 100%
+  );
+  color: var(--theme-white);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 12px 22px rgba(0, 0, 0, 0.2);
+}
+
+.service-card-button--secondary .service-card-button__icon {
+  opacity: 0.9;
+}
+
+/* =========================================================
+   TITLE HOVER
+   ========================================================= */
+
+.service-card-title:hover,
+.service-card h3:hover,
+.service-packages-grid .service-options h3:hover {
+  color: var(--theme-white);
+}
+
+/* =========================================================
+   EMPTY STATE
+   ========================================================= */
+
+.services-empty-state {
+  width: min(100%, var(--svc-grid-max-width));
+  margin: 1rem auto 0;
+  padding-inline: var(--svc-grid-side-padding);
+  color: var(--svc-text-muted);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1320px) {
+  .service-packages-grid.service-grid-count-4,
+  .service-packages-grid.service-grid-count-5,
+  .service-packages-grid.service-grid-count-6,
+  .service-packages-grid.service-grid-count-7,
+  .service-packages-grid.service-grid-count-8 {
+    grid-template-columns: repeat(3, minmax(240px, 1fr));
+  }
+
+  .service-packages-grid--upgrades.service-grid-count-4,
+  .service-packages-grid--upgrades.service-grid-count-5,
+  .service-packages-grid--upgrades.service-grid-count-6 {
+    grid-template-columns: repeat(3, minmax(260px, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .service-packages-grid.service-grid-count-2,
+  .service-packages-grid.service-grid-count-3,
+  .service-packages-grid.service-grid-count-4,
+  .service-packages-grid.service-grid-count-5,
+  .service-packages-grid.service-grid-count-6,
+  .service-packages-grid.service-grid-count-7,
+  .service-packages-grid.service-grid-count-8 {
+    grid-template-columns: repeat(2, minmax(240px, 1fr));
+  }
+
+  .service-options-img-ctr {
+    min-height: 200px;
+    max-height: 200px;
+  }
+
+  .service-card,
+  .service-packages-grid .service-options {
+    border-radius: var(--svc-radius-md);
+  }
+
+  .service-card-body {
+    padding: 0.9rem;
+  }
+
+  .service-card-price,
+  .pars-price {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 620px) {
+  .service-packages-grid.service-grid-count-1,
+  .service-packages-grid.service-grid-count-2,
+  .service-packages-grid.service-grid-count-3,
+  .service-packages-grid.service-grid-count-4,
+  .service-packages-grid.service-grid-count-5,
+  .service-packages-grid.service-grid-count-6,
+  .service-packages-grid.service-grid-count-7,
+  .service-packages-grid.service-grid-count-8 {
+    grid-template-columns: 1fr;
+    width: min(100%, 580px);
+    padding-inline: 0;
+    gap: 1rem;
+  }
+
+  .service-options-img-ctr {
+    min-height: 190px;
+    max-height: 190px;
+  }
+
+  .service-card-actions {
+    gap: 0.55rem;
+  }
+
+  .service-card-button,
+  .service-packages-grid .service-options .learn-more {
+    min-height: 3rem;
+    padding: 0.85rem 0.95rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .service-card,
+  .service-packages-grid .service-options,
+  .service-options-img-ctr img,
+  .service-card-button,
+  .service-packages-grid .service-options .learn-more,
+  .service-card-button__icon {
+    transition: none;
+  }
+
+  .service-card:hover,
+  .service-packages-grid .service-options:hover,
+  .service-card-button:hover,
+  .service-packages-grid .service-options .learn-more:hover {
+    transform: none;
+  }
+
+  .service-card-button:hover .service-card-button__icon,
+  .service-packages-grid .service-options .learn-more:hover .service-card-button__icon,
+  .service-card-button[data-button-state="remove"]:hover .service-card-button__icon,
+  .service-packages-grid
+    .service-options
+    .learn-more[data-button-state="remove"]:hover
+    .service-card-button__icon {
+    transform: none;
+  }
+}

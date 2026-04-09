@@ -1,0 +1,187 @@
+/* Base styles for the entire form */
+form {
+  display: grid;
+  grid-gap: 1rem;
+  max-width: 45rem;
+  margin: 2rem auto;
+  padding: 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: none;
+  background-color: white;
+  letter-spacing: 0.03rem;
+}
+select option {
+  color: #292929;
+  padding: 0.2rem;
+}
+fieldset {
+  border: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1.5rem 1rem;
+}
+/* Style for labels */
+form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: black;
+}
+hr {
+  color: #a0a0a06e;
+  border-width: 0.1rem;
+  border-style: dotted;
+  border-radius: 20rem;
+  margin: 1rem 0;
+}
+/* Style for input fields and select dropdowns */
+form input[type="text"],
+form input[type="email"],
+form input[type="tel"],
+form select,
+form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  color: black;
+  letter-spacing: 0.05rem;
+}
+form input[type="file"] {
+  border: 0.01rem black solid;
+}
+
+/* Style for the file input field */
+form input[type="file"] {
+  margin-bottom: 16px;
+}
+
+/* Style for the file input's descriptive text */
+.form-text {
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 20px;
+}
+
+/* Style for the submit button */
+form input[type="submit"] {
+  padding: 1.2rem 2rem;
+  background-color: #aa0000;
+  color: #fff;
+  font-weight: 400;
+  letter-spacing: 0.05rem;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  max-width: 15rem;
+}
+form input[type="submit"]:hover {
+  background-color: #5f0000;
+}
+
+/* Custom file upload button styles */
+.custom-file-upload {
+  display: grid;
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  cursor: pointer;
+  text-align: center;
+  margin-bottom: 16px;
+  width: 100%;
+  height: 5rem;
+  align-items: center;
+}
+
+.custom-file-upload:hover {
+  background-color: #e5e5e5;
+}
+
+/* Optional: Add a cloud upload icon using FontAwesome (you'll need to include FontAwesome for this) */
+.custom-file-upload .fa {
+  margin-right: 10px;
+}
+.gr-fl {
+  grid-column: 1/3;
+}
+
+.upload-container {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.files-list {
+  margin-top: 10px;
+}
+
+.files-list .file-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #ccc;
+  padding: 5px;
+  margin-top: 5px;
+}
+
+.file-item .delete-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+.delete-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  vertical-align: middle;
+  padding: 0;
+  margin-left: 10px;
+  color: #777;
+  text-transform: lowercase;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.delete-btn svg {
+  width: 20px;
+  height: 20px;
+  fill: grey; /* Color for the flat appearance */
+}
+form p {
+  color: #000;
+  font-size: 1rem;
+  letter-spacing: 0.01rem;
+}
+.s-form {
+  padding: 5rem 1rem;
+}
+label span {
+  color: #aa0000;
+  font-weight: 800;
+}
+@media only screen and (max-width: 700px) {
+  fieldset {
+    grid-template-columns: 1fr;
+    grid-gap: 1.5rem 1rem;
+  }
+  .gr-fl {
+    grid-column: 1/2;
+  }
+
+  form input[type="submit"] {
+    max-width: 100%;
+  }
+  .form-captcha {
+    justify-self: center;
+    margin-bottom: 1rem;
+    grid-column: 1/2;
+  }
+}
+@media only screen and (max-width: 400px) {
+  form {
+    padding: 1rem;
+  }
+}

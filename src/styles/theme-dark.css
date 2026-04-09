@@ -1,0 +1,162 @@
+/* =========================================================
+   THEME DARK
+   Shared Titan Vans dark surface / accent / text / radius system
+   Load before nav.css, header-hero.css, and service-faq.css
+   ========================================================= */
+
+:root {
+  --theme-accent: #aa0000;
+  --theme-accent-hover: #ac1111;
+  --theme-accent-deep: #8f0000;
+  --theme-accent-darker: #7f0d0d;
+
+  --theme-white: #ffffff;
+  --theme-black: #000000;
+
+  --theme-neutral-300: #b6b6b6;
+  --theme-neutral-50a: rgba(0.5, 0.5, 0.5, 0.5);
+
+  --theme-success-bg: rgba(34, 197, 94, 0.14);
+  --theme-success-text: #9ee6b1;
+  --theme-success-border: rgba(34, 197, 94, 0.22);
+
+  --theme-info-bg: rgba(59, 130, 246, 0.12);
+  --theme-info-text: #a9c9ff;
+  --theme-info-border: rgba(59, 130, 246, 0.2);
+
+  --theme-overlay-black-00: rgba(20, 20, 20, 0);
+  --theme-overlay-black-35: rgba(20, 20, 20, 0.35);
+  --theme-overlay-black-75: rgba(20, 20, 20, 0.75);
+  --theme-overlay-black-20: rgba(8, 8, 8, 0.2);
+
+  --theme-overlay-neutral-30-96: rgba(52, 52, 52, 0.96);
+  --theme-overlay-neutral-20-96: rgba(30, 30, 30, 0.96);
+  --theme-overlay-neutral-40-98: rgba(70, 70, 70, 0.98);
+  --theme-overlay-neutral-30-98: rgba(40, 40, 40, 0.98);
+
+  --theme-text-eyebrow-soft: rgba(255, 255, 255, 0.62);
+
+  --theme-accent-soft-05: rgba(170, 0, 0, 0.05);
+  --theme-accent-soft-18: rgba(170, 0, 0, 0.18);
+
+  --theme-shadow-black-24: rgba(0, 0, 0, 0.24);
+  --theme-shadow-black-28: rgba(0, 0, 0, 0.28);
+  --theme-shadow-black-20: rgba(0, 0, 0, 0.2);
+  --theme-shadow-black-42: rgba(0, 0, 0, 0.42);
+
+  --theme-text-strong: #ffffff;
+  --theme-text-main: #ececef;
+  --theme-text-main-soft: rgba(255, 255, 255, 0.94);
+  --theme-text-main-soft-2: rgba(255, 255, 255, 0.92);
+  --theme-text-main-soft-3: rgba(255, 255, 255, 0.9);
+  --theme-text-muted: #c4c6cc;
+  --theme-text-soft: #989ba3;
+  --theme-text-eyebrow: #d7b0b0;
+  --theme-text-accent-soft: #f0c7c7;
+  --theme-text-link-accent: #ff9a9a;
+  --theme-text-link-accent-hover: #ffb1b1;
+
+  --theme-page-bg: #141414;
+  --theme-page-bg-soft: #1b1b1d;
+  --theme-page-bg-soft-2: #1d1d1f;
+
+  --theme-surface-glass: rgba(10, 10, 10, 0.72);
+  --theme-surface-glass-strong: rgba(16, 16, 16, 0.84);
+  --theme-surface-hero: rgba(20, 20, 22, 0.72);
+  --theme-surface-hero-strong: rgba(28, 29, 32, 0.92);
+
+  --theme-surface-card: #202124;
+  --theme-surface-card-soft: #2a2b2f;
+  --theme-surface-card-hover: #2d2f34;
+  --theme-surface-card-soft-2: #2a2c31;
+  --theme-surface-card-soft-3: #34363c;
+
+  --theme-surface-white-04: rgba(255, 255, 255, 0.04);
+  --theme-surface-white-045: rgba(255, 255, 255, 0.045);
+  --theme-surface-white-05: rgba(255, 255, 255, 0.05);
+  --theme-surface-white-06: rgba(255, 255, 255, 0.06);
+  --theme-surface-white-08: rgba(255, 255, 255, 0.08);
+  --theme-surface-white-09: rgba(255, 255, 255, 0.09);
+  --theme-surface-white-10: rgba(255, 255, 255, 0.1);
+  --theme-surface-white-12: rgba(255, 255, 255, 0.12);
+  --theme-surface-white-14: rgba(255, 255, 255, 0.14);
+  --theme-surface-white-16: rgba(255, 255, 255, 0.16);
+  --theme-surface-white-18: rgba(255, 255, 255, 0.18);
+  --theme-surface-white-20: rgba(255, 255, 255, 0.2);
+
+  --theme-overlay-hero-top: rgba(7, 7, 8, 0.28);
+  --theme-overlay-hero-bottom: rgba(7, 7, 8, 0.58);
+  --theme-overlay-radial-accent: rgba(170, 0, 0, 0.14);
+  --theme-overlay-dark-18: rgba(8, 8, 9, 0.18);
+  --theme-overlay-dark-54: rgba(8, 8, 9, 0.54);
+
+  --theme-overlay-dark-92: rgba(6, 6, 6, 0.92);
+  --theme-overlay-dark-96: rgba(6, 6, 6, 0.97);
+
+  --theme-overlay-surface-78: rgba(18, 18, 20, 0.78);
+  --theme-overlay-surface-88: rgba(26, 27, 30, 0.88);
+  --theme-overlay-surface-90: rgba(23, 24, 27, 0.9);
+  --theme-overlay-surface-96: rgba(30, 32, 36, 0.96);
+
+  --theme-accent-soft: rgba(170, 0, 0, 0.12);
+  --theme-accent-soft-border: rgba(170, 0, 0, 0.22);
+  --theme-accent-soft-border-24: rgba(170, 0, 0, 0.24);
+  --theme-accent-soft-border-28: rgba(170, 0, 0, 0.28);
+  --theme-accent-soft-025: rgba(170, 0, 0, 0.025);
+  --theme-accent-soft-02: rgba(170, 0, 0, 0.02);
+  --theme-accent-soft-035: rgba(170, 0, 0, 0.035);
+  --theme-accent-glow-14: rgba(122, 12, 12, 0.14);
+  --theme-accent-glow-18: rgba(122, 12, 12, 0.18);
+  --theme-accent-glow-20: rgba(122, 12, 12, 0.2);
+  --theme-accent-glow-24: rgba(140, 18, 18, 0.24);
+  --theme-accent-glow-18b: rgba(140, 18, 18, 0.18);
+  --theme-accent-box-24: rgba(170, 0, 0, 0.24);
+  --theme-accent-box-32: rgba(170, 0, 0, 0.32);
+
+  --theme-border-soft: rgba(255, 255, 255, 0.08);
+  --theme-border: rgba(255, 255, 255, 0.1);
+  --theme-border-strong: rgba(255, 255, 255, 0.16);
+  --theme-border-stronger: rgba(255, 255, 255, 0.18);
+  --theme-divider: rgba(255, 255, 255, 0.08);
+
+  --theme-shadow-surface:
+    0 1.2rem 2.8rem rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+  --theme-shadow-card:
+    0 14px 34px rgba(0, 0, 0, 0.34), 0 2px 8px rgba(0, 0, 0, 0.22);
+  --theme-shadow-card-hover:
+    0 22px 48px rgba(0, 0, 0, 0.42), 0 8px 18px rgba(0, 0, 0, 0.26);
+  --theme-shadow-hero-lg:
+    0 24px 60px rgba(0, 0, 0, 0.34), 0 10px 24px rgba(0, 0, 0, 0.18);
+  --theme-shadow-hero-md:
+    0 14px 34px rgba(0, 0, 0, 0.24), 0 4px 12px rgba(0, 0, 0, 0.16);
+  --theme-shadow-popover:
+    0 1.5rem 3rem rgba(0, 0, 0, 0.42),
+    0 0 0 1px rgba(255, 255, 255, 0.045) inset;
+  --theme-shadow-white-inset: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  --theme-shadow-press: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.16);
+  --theme-shadow-link-hover: 0 0.95rem 2rem rgba(0, 0, 0, 0.24);
+  --theme-shadow-button: 0 10px 24px rgba(0, 0, 0, 0.24);
+  --theme-shadow-button-hover: 0 12px 28px rgba(0, 0, 0, 0.28);
+  --theme-shadow-button-dark: 0 10px 22px rgba(0, 0, 0, 0.2);
+  --theme-shadow-button-dark-hover: 0 12px 26px rgba(0, 0, 0, 0.24);
+  --theme-shadow-title: 0 10px 28px rgba(0, 0, 0, 0.28);
+
+  --theme-radius-sm: 0.9rem;
+  --theme-radius-md: 1rem;
+  --theme-radius-lg: 1.25rem;
+  --theme-radius-xl: 2rem;
+  --theme-radius-hero-panel: 1.4rem;
+  --theme-radius-tablet-panel: 1.35rem;
+  --theme-radius-mobile-panel: 1.2rem;
+  --theme-radius-pill: 999px;
+
+  --theme-blur-sm: blur(8px);
+  --theme-blur-md: blur(14px);
+  --theme-blur-lg: blur(18px);
+  --theme-blur-xl: blur(48px);
+
+  --theme-max-width-sm: 1000px;
+  --theme-max-width-md: 1400px;
+  --theme-max-width-lg: 1600px;
+}

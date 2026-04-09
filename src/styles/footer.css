@@ -1,0 +1,476 @@
+:root {
+    --c1: #aa0000;
+    --c2: #000;
+    --c3: #b6b6b6;
+    --c4: #ffffff;
+
+    --c5: rgba(0.5, 0.5, 0.5, 0.5);
+
+    --hover-c1: #ac1111;
+    --hover-c2: #000;
+    --hover-c3: #000;
+
+    --nav-h: 3.3rem;
+    --banner-h: 2.7;
+
+    --border-r: 3px;
+    --button-border-r: 3rem;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Work Sans", sans-serif;
+    list-style: none;
+    font-weight: 300;
+    color: var(--c3);
+}
+
+/* ========================================================================== */
+/*  FOOTER                                                                     */
+/* ========================================================================== */
+
+.footer {
+    display: grid;
+    grid-template-columns: auto 1fr auto auto;
+    gap: 2rem;
+    padding: 4rem 4rem;
+    align-items: center;
+}
+
+.footer--portal {
+    grid-template-columns: auto 1fr auto auto;
+}
+
+.footer h5 {
+    color: var(--c4);
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 1rem;
+    letter-spacing: 0.1rem;
+}
+
+.footer a,
+.footer p,
+.footer li {
+    font-size: 1rem;
+    line-height: 1.8rem;
+}
+
+.footer-menu {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+    gap: 3rem;
+    line-height: 1.5rem;
+    align-self: center;
+    align-items: start;
+}
+
+.footer-menu>div {
+    display: grid;
+    align-content: start;
+    gap: 0.75rem;
+}
+
+.footer-menu ul {
+    display: grid;
+    gap: 0.5rem;
+}
+
+.footer-nap {
+    grid-column: 4 / 5;
+    align-self: center;
+}
+
+.footer-nap ul {
+    display: grid;
+    gap: 0.5rem;
+    line-height: 1.4rem;
+}
+
+.footer-nap li,
+.footer-menu ul a {
+    letter-spacing: 0.03rem;
+}
+
+.footer-menu a:hover,
+.footer-nap a:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.1rem;
+}
+
+.footer-menu a.active {
+    color: var(--c4);
+    font-weight: 400;
+    text-decoration: underline;
+    text-underline-offset: 0.12rem;
+}
+
+/* ========================================================================== */
+/*  NEWSLETTER / PORTAL CTA                                                    */
+/* ========================================================================== */
+
+.nl-subscribe {
+    max-width: 40rem;
+    width: 100%;
+    margin: 0 6%;
+    background-color: rgb(46, 46, 46);
+    padding: 1.5rem;
+    grid-column: 3 / 4;
+    align-self: center;
+    justify-self: center;
+    border-radius: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.nl-subscribe--portal {
+    max-width: 32rem;
+    margin: 0 auto;
+    padding: 2rem 1.8rem;
+    background:
+        linear-gradient(180deg,
+            rgba(255, 255, 255, 0.07) 0%,
+            rgba(255, 255, 255, 0.035) 100%),
+        rgba(34, 34, 34, 0.96);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 1.1rem;
+    box-shadow:
+        0 18px 45px rgba(0, 0, 0, 0.32),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.nl-subscribe h5 {
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    letter-spacing: 0.1rem;
+    line-height: 1.5rem;
+}
+
+.nl-subscribe--portal h5 {
+    font-size: 1.15rem;
+    letter-spacing: 0.11rem;
+    margin-bottom: 0.8rem;
+    color: var(--c4);
+}
+
+.nl-subscribe p {
+    font-size: 1.2rem;
+    line-height: 2rem;
+}
+
+.nl-subscribe--portal p {
+    font-size: 1.12rem;
+    line-height: 1.95rem;
+    max-width: 28rem;
+    color: rgba(255, 255, 255, 0.82);
+}
+
+.nl-subscribe button {
+    margin-top: 1rem;
+}
+
+.nl-subscribe__actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.9rem;
+    align-items: center;
+    margin-top: 1.35rem;
+}
+
+.nl-subscribe__actions>* {
+    width: 100%;
+}
+
+/* ========================================================================== */
+/*  PORTAL / NEWSLETTER BUTTONS                                                */
+/* ========================================================================== */
+
+.nl-subscribe__actions .learn-more,
+.nl-subscribe__actions .bnp,
+.nl-subscribe__actions .footer-logout-btn,
+.nl-subscribe .learn-more,
+.nl-subscribe .bnp {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 3.35rem;
+    width: 100%;
+    margin: 0;
+    padding: 0.95rem 1.25rem;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    font-size: 0.98rem;
+    font-weight: 500;
+    letter-spacing: 0.08rem;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 1;
+    cursor: pointer;
+    transition:
+        transform 0.22s ease,
+        box-shadow 0.22s ease,
+        background-color 0.22s ease,
+        border-color 0.22s ease,
+        color 0.22s ease;
+}
+
+/* primary action */
+.nl-subscribe__actions>*:first-child,
+.nl-subscribe>.learn-more,
+.nl-subscribe>.bnp {
+    background: linear-gradient(180deg, #c81818 0%, var(--c1) 100%);
+    color: var(--c4);
+    border-color: rgba(255, 255, 255, 0.08);
+    box-shadow:
+        0 10px 22px rgba(170, 0, 0, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* secondary action */
+.nl-subscribe__actions>*:last-child {
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--c4);
+    border-color: rgba(255, 255, 255, 0.14);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.nl-subscribe__actions .learn-more:hover,
+.nl-subscribe__actions .bnp:hover,
+.nl-subscribe__actions .footer-logout-btn:hover,
+.nl-subscribe .learn-more:hover,
+.nl-subscribe .bnp:hover {
+    transform: translateY(-2px);
+}
+
+.nl-subscribe__actions>*:first-child:hover,
+.nl-subscribe>.learn-more:hover,
+.nl-subscribe>.bnp:hover {
+    background: linear-gradient(180deg, #d01b1b 0%, var(--hover-c1) 100%);
+    box-shadow:
+        0 14px 28px rgba(170, 0, 0, 0.34),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.nl-subscribe__actions>*:last-child:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.22);
+    box-shadow:
+        0 10px 20px rgba(0, 0, 0, 0.16),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.nl-subscribe__actions .learn-more:active,
+.nl-subscribe__actions .bnp:active,
+.nl-subscribe__actions .footer-logout-btn:active,
+.nl-subscribe .learn-more:active,
+.nl-subscribe .bnp:active {
+    transform: translateY(0);
+}
+
+.nl-subscribe__actions .learn-more:focus-visible,
+.nl-subscribe__actions .bnp:focus-visible,
+.nl-subscribe__actions .footer-logout-btn:focus-visible,
+.nl-subscribe .learn-more:focus-visible,
+.nl-subscribe .bnp:focus-visible {
+    outline: 2px solid rgba(255, 255, 255, 0.35);
+    outline-offset: 3px;
+}
+
+/* keep any learn-more pseudo shine out of the footer buttons */
+.nl-subscribe .learn-more::before,
+.nl-subscribe__actions .learn-more::before {
+    display: none;
+}
+
+/* ========================================================================== */
+/*  PORTAL / NEWSLETTER BUTTONS                                                */
+/* ========================================================================== */
+
+.footer-cta,
+.footer-logout-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 3.35rem;
+    width: 100%;
+    margin: 0;
+    padding: 0.95rem 1.25rem;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    font-size: 0.98rem;
+    font-weight: 500;
+    letter-spacing: 0.08rem;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 1;
+    text-decoration: none;
+    color: var(--c4);
+    cursor: pointer;
+    transition:
+        transform 0.22s ease,
+        box-shadow 0.22s ease,
+        background-color 0.22s ease,
+        border-color 0.22s ease,
+        color 0.22s ease;
+}
+
+.footer-cta--primary {
+    background: linear-gradient(180deg, #c81818 0%, var(--c1) 100%);
+    border-color: rgba(255, 255, 255, 0.08);
+    box-shadow:
+        0 10px 22px rgba(170, 0, 0, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.footer-cta--secondary {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.14);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.footer-logout-btn {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.14);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.footer-cta:hover,
+.footer-logout-btn:hover {
+    transform: translateY(-2px);
+}
+
+.footer-cta--primary:hover {
+    background: linear-gradient(180deg, #d01b1b 0%, var(--hover-c1) 100%);
+    box-shadow:
+        0 14px 28px rgba(170, 0, 0, 0.34),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.footer-cta--secondary:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.22);
+    box-shadow:
+        0 10px 20px rgba(0, 0, 0, 0.16),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.footer-logout-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.22);
+    box-shadow:
+        0 10px 20px rgba(0, 0, 0, 0.16),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.footer-cta:active,
+.footer-logout-btn:active {
+    transform: translateY(0);
+}
+
+.footer-cta:focus-visible,
+.footer-logout-btn:focus-visible {
+    outline: 2px solid rgba(255, 255, 255, 0.35);
+    outline-offset: 3px;
+}
+
+.footer-cta--cookie {
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--c4);
+}
+
+.footer-cta--cookie:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* ========================================================================== */
+/*  RESPONSIVE - <= 1200                                                       */
+/* ========================================================================== */
+
+@media only screen and (max-width: 1200px) {
+    .footer {
+        grid-template-columns: 1fr;
+        grid-gap: 2rem;
+        padding: 1.25rem;
+    }
+
+    .nl-subscribe {
+        margin: 0;
+        max-width: 100%;
+        grid-row: 1 / 2;
+        grid-column: 1 / 2;
+        padding: 2rem 1.25rem;
+    }
+
+    .nl-subscribe--portal {
+        max-width: 40rem;
+    }
+
+    .footer-nap {
+        grid-column: 1 / 2;
+        grid-row: 2 / 3;
+        text-align: center;
+    }
+
+    .footer-menu {
+        grid-column: 1 / 2;
+        grid-template-columns: auto auto auto auto auto;
+        justify-items: center;
+    }
+}
+
+/* ========================================================================== */
+/*  RESPONSIVE - <= 600                                                        */
+/* ========================================================================== */
+
+@media only screen and (max-width: 600px) {
+    .footer {
+        padding: 1rem;
+    }
+
+    .footer-menu {
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 3rem;
+        max-width: 20rem;
+        margin: 0 auto;
+        justify-items: center;
+        text-align: center;
+    }
+
+    .footer-menu ul {
+        display: grid;
+        grid-gap: 0.5rem;
+    }
+
+    .footer-menu h5 {
+        margin-bottom: 0.5rem;
+        letter-spacing: 0.1rem;
+    }
+
+    .nl-subscribe {
+        padding: 1.5rem 1rem;
+    }
+
+    .nl-subscribe--portal {
+        padding: 1.5rem 1rem;
+        border-radius: 0.95rem;
+    }
+
+    .nl-subscribe p {
+        font-size: 1.1rem;
+        line-height: 1.8rem;
+    }
+
+    .nl-subscribe--portal p {
+        font-size: 1.05rem;
+        line-height: 1.75rem;
+    }
+
+    .nl-subscribe__actions {
+        grid-template-columns: 1fr;
+        justify-content: center;
+    }
+}
