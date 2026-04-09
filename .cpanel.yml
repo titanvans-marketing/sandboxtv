@@ -3,4 +3,7 @@ deployment:
   tasks:
     - export DEPLOYPATH=/home2/sandboxtv/public_html/
     - /bin/mkdir -p $DEPLOYPATH
-    - /bin/cp -R assets  $DEPLOYPATH
+    - /bin/cp index.php $DEPLOYPATH
+    - /bin/cp -R includes $DEPLOYPATH
+    - /bin/cp -R src $DEPLOYPATH
+    - /bin/cp -R assets $DEPLOYPATH
